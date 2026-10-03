@@ -1,0 +1,27 @@
+{{ $items := slice
+  (dict "n" "01" "title" "Imaginer" "slug" "imaginer" "subtitle" "La formation de demain" "text" "Prospective RH, neurosciences, intelligence collective, IA maîtrisée, veille et R&D : concevoir des formations justes, engageantes et utiles." "bg" "var(--color-blue)" "icon" "expertise-icone-1.png" "person" "expertise-femme-nuage.png")
+  (dict "n" "02" "title" "Transformer" "slug" "transformer" "subtitle" "Faire passer les acquis sur le terrain" "text" "Reconnecter apprentissage et terrain, impliquer managers et collaborateurs, transformer l’essai au-delà de la salle ou de l’écran." "bg" "var(--color-yellow)" "icon" "expertise-icone-2.png" "person" "expertise-homme-ballon.png")
+  (dict "n" "03" "title" "Créer" "slug" "creer" "subtitle" "Des expériences qui donnent envie d’apprendre" "text" "Digital, présentiel, blended, storytelling, gamification, design et neuropédagogie : créer des expériences apprenantes engageantes, belles et efficaces." "bg" "var(--color-lilac)" "icon" "expertise-icone-3.png" "person" "expertise-femme-baguette.png")
+  (dict "n" "04" "title" "Faire rayonner" "slug" "faire-rayonner" "subtitle" "Donner plus de valeur à la formation" "text" "Marketing de la formation, kits prêts à l’emploi, montée en autonomie des équipes, nouveaux modèles économiques avec Zihive© : gagner en impact et en valeur." "bg" "var(--color-green)" "icon" "expertise-icone-4.png" "person" "expertise-femme-cheveux.png")
+}}
+<section class="expertises" aria-labelledby="expertises-title">
+  <div class="site-container">
+    <div class="expertises__intro">
+      <p class="section-eyebrow">CE QUI NOUS ANIME</p>
+      <h2 id="expertises-title" class="section-title">KISSARI, votre partenaire transformation — ou 4 façons de vous faire aimer toutes les matières.</h2>
+    </div>
+    <div class="expertises__grid">
+      {{ range $items }}
+      <article class="expertise-card" style="--card-bg: {{ .bg }}">
+        <p class="expertise-card__number">{{ .n }}</p>
+        <img class="expertise-card__icon" src="{{ relURL (printf "images/%s" .icon) }}" alt="">
+        <h3>{{ .title }}</h3>
+        <p class="expertise-card__subtitle">{{ .subtitle }}</p>
+        <p class="expertise-card__text">{{ .text }}</p>
+        <a class="expertise-card__link" href="{{ relURL (printf "expertises/%s/" .slug) }}">En savoir plus →</a>
+        <img class="expertise-card__person" src="{{ relURL (printf "images/%s" .person) }}" alt="">
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

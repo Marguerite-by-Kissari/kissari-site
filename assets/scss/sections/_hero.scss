@@ -1,0 +1,99 @@
+/* ==========================================================================
+   SECTION — HERO “ARRIVE BIENTÔT”
+   ========================================================================== */
+
+/*
+  Responsabilité : premier écran temporaire validé pour la V1.
+
+  Points sensibles :
+  - le h1 utilise clamp() pour traduire la maquette 1920px en responsive ;
+  - les images sont décoratives dans le HTML et positionnées ici ;
+  - le surlignage rose est généré en CSS via ::after pour rester modifiable.
+*/
+.hero {
+  position: relative;
+  min-height: clamp(760px, 82vw, 1350px);
+  padding: clamp(56px, 8vw, 128px) 0 clamp(80px, 12vw, 180px);
+  background: var(--color-cream);
+}
+
+.hero__eyebrow {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: clamp(1rem, 1.05vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(3.2rem, 8vw, 7.1rem);
+  line-height: .94;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+}
+
+.hero h1 span {
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1 span::after {
+  content: '';
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: .02em;
+  z-index: -1;
+  height: .18em;
+  border-radius: var(--radius-pill);
+  background: var(--color-pink);
+}
+
+.hero__intro {
+  max-width: 900px;
+  margin: 32px auto 0;
+  text-align: center;
+  font-size: clamp(1.25rem, 2.1vw, 1.9rem);
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+/*
+  Scène graphique du hero. Les tailles sont volontairement en vw + max-width
+  pour rester fluides sans réintroduire min() Sass-incompatible.
+*/
+.hero__art {
+  position: relative;
+  height: clamp(360px, 42vw, 640px);
+  margin-top: clamp(48px, 6vw, 96px);
+}
+
+.hero__woman {
+  position: absolute;
+  left: 6%;
+  bottom: 0;
+  width: 30vw;
+  max-width: 350px;
+}
+
+.hero__circle {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  width: 34vw;
+  max-width: 390px;
+}
+
+.hero__picto {
+  position: absolute;
+  right: 21%;
+  top: 34%;
+  width: 18vw;
+  max-width: 190px;
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 1, .12));
+}

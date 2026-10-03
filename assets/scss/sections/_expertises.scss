@@ -1,0 +1,92 @@
+/* ==========================================================================
+   SECTION — EXPERTISES / 4 CARTES
+   ========================================================================== */
+
+/*
+  Grille des quatre expertises : Imaginer, Transformer, Créer, Faire rayonner.
+
+  Les couleurs des cartes sont injectées via variable inline `--card-bg` dans
+  le partial Hugo, car chaque carte possède sa couleur issue de la maquette.
+*/
+.expertises {
+  padding: clamp(86px, 10vw, 160px) 0;
+  background: var(--color-cream);
+}
+
+.expertises__intro {
+  max-width: 1120px;
+  margin-bottom: clamp(48px, 7vw, 96px);
+}
+
+.expertises__intro .section-title {
+  max-width: 1100px;
+}
+
+.expertises__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.expertise-card {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 54px);
+  background: var(--card-bg, var(--color-blue));
+  isolation: isolate;
+}
+
+.expertise-card__number {
+  margin: 0 0 18px;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.expertise-card__icon {
+  width: 62px;
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.expertise-card h3 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5.2vw, 5.8rem);
+  line-height: .9;
+  letter-spacing: -0.06em;
+  font-weight: 800;
+}
+
+.expertise-card__subtitle {
+  margin: 18px 0 18px;
+  max-width: 480px;
+  font-size: clamp(1.45rem, 2.6vw, 2.85rem);
+  line-height: 1.02;
+  font-weight: 800;
+}
+
+.expertise-card__text {
+  max-width: 480px;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.42;
+}
+
+.expertise-card__link {
+  display: inline-flex;
+  margin-top: 18px;
+  font-weight: 800;
+}
+
+/*
+  Personnage décoratif en fond de carte. z-index:-1 reste dans la carte grâce
+  à `isolation:isolate` sur .expertise-card.
+*/
+.expertise-card__person {
+  position: absolute;
+  right: -4%;
+  bottom: -6%;
+  width: 45%;
+  max-width: 280px;
+  z-index: -1;
+}

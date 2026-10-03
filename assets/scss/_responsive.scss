@@ -1,0 +1,124 @@
+/* ==========================================================================
+   RESPONSIVE — ADAPTATIONS TABLETTE / MOBILE
+   ========================================================================== */
+
+/*
+  Centralisation volontaire des media queries.
+
+  Avantage :
+  - voir vite ce qui change en mobile ;
+  - éviter de chasser des overrides dans 12 fichiers ;
+  - garder la cascade lisible.
+
+  Règle : si un composant devient très complexe, on pourra déplacer ses media
+  queries dans son fichier, mais pour la V1 la centralisation est plus claire.
+*/
+@media (max-width: 900px) {
+  /* Header mobile : bouton visible, menu transformé en panneau vertical. */
+  .site-header__toggle {
+    display: inline-flex;
+  }
+
+  .site-header__nav {
+    position: fixed;
+    inset: 82px 0 auto 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+    background: var(--color-black);
+    border-top: 1px solid rgba(255, 255, 255, .18);
+  }
+
+  body.nav-open .site-header__nav {
+    display: flex;
+  }
+
+  .site-header__nav a {
+    font-size: 1.3rem;
+  }
+
+  /* Hero : scène graphique resserrée pour éviter les débordements. */
+  .hero__art {
+    height: 500px;
+  }
+
+  .hero__woman {
+    width: 220px;
+    left: 0;
+  }
+
+  .hero__circle {
+    width: 280px;
+    right: -30px;
+  }
+
+  .hero__picto {
+    width: 150px;
+    right: 70px;
+  }
+
+  /* Sections en colonnes : retour en flux vertical. */
+  .manifesto__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertises__grid,
+  .blog-preview__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-preview__head {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  /* Mobile étroit : réduire le hero pour éviter un premier écran interminable. */
+  .hero {
+    min-height: auto;
+  }
+
+  .hero__art {
+    height: 390px;
+  }
+
+  .hero__woman {
+    width: 165px;
+  }
+
+  .hero__circle {
+    width: 220px;
+  }
+
+  .hero__picto {
+    width: 116px;
+    right: 54px;
+  }
+
+  /* Les cartes gardent assez de hauteur pour laisser vivre les personnages. */
+  .expertise-card {
+    min-height: 620px;
+  }
+
+  .expertise-card__person {
+    width: 58%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Respect des personnes sensibles au mouvement. */
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

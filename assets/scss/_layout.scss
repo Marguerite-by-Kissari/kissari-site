@@ -1,0 +1,39 @@
+/* ==========================================================================
+   LAYOUT — CONTENEURS ET MOTIFS STRUCTURELS RÉUTILISABLES
+   ========================================================================== */
+
+/*
+  Conteneur central commun.
+
+  Choix technique : width + max-width au lieu de min(calc(...), ...), car la
+  version Sass de Hugo peut interpréter min() comme une fonction Sass et non CSS.
+*/
+.site-container {
+  width: calc(100% - 32px);
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/*
+  Surtitre commun à plusieurs sections : manifeste, expertises, blog.
+  Modifier ici si tous les surtitres doivent évoluer ensemble.
+*/
+.section-eyebrow {
+  margin: 0 0 24px;
+  font-size: clamp(1rem, 2vw, 1.9rem);
+  line-height: 1.2;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/*
+  Grand titre commun hors hero.
+  Le hero garde son propre h1 dans _hero.scss pour éviter les collisions.
+*/
+.section-title {
+  margin: 0;
+  font-size: clamp(3.1rem, 7vw, 7rem);
+  line-height: .92;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}

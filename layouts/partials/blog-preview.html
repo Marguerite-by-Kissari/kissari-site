@@ -1,0 +1,24 @@
+{{ $posts := first 3 (where site.RegularPages "Section" "blog") }}
+<section class="blog-preview" aria-labelledby="blog-title">
+  <div class="site-container">
+    <div class="blog-preview__head">
+      <div>
+        <p class="section-eyebrow">LE BLOG</p>
+        <h2 id="blog-title" class="section-title">Nos dernières inspirations</h2>
+      </div>
+      <a class="expertise-card__link" href="{{ relURL "blog/" }}">Voir tous les articles →</a>
+    </div>
+    <div class="blog-preview__grid">
+      {{ range $posts }}
+      <article class="post-card">
+        <div>
+          <p class="post-card__label">Placeholder</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Description }}</p>
+        </div>
+        <a href="{{ .RelPermalink }}">Lire l’article →</a>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

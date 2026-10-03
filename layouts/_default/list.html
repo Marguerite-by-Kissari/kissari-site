@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="page-shell">
+  <div class="site-container">
+    {{ if .Params.placeholder }}<p class="placeholder-badge">Placeholder V1</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    {{ .Content }}
+    {{ if .Pages }}
+      <div class="blog-preview__grid" aria-label="Contenus disponibles">
+        {{ range .Pages }}
+        <article class="post-card">
+          <p class="post-card__label">{{ with .Params.placeholder }}Placeholder{{ else }}Article{{ end }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Description }}</p>
+        </article>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

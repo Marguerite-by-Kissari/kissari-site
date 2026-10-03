@@ -1,0 +1,74 @@
+/* ==========================================================================
+   SECTION — MANIFESTE
+   ========================================================================== */
+
+/*
+  Bloc rose “NOTRE MANIFESTE”.
+
+  Ce fichier ne doit gérer que :
+  - le fond rose ;
+  - la grille texte / visuel ;
+  - les titres et séparateurs internes ;
+  - le badge/image décoratif de droite.
+*/
+.manifesto {
+  background: var(--color-pink);
+  padding: clamp(76px, 9vw, 150px) 0;
+}
+
+.manifesto__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 90px);
+}
+
+/*
+  Le h2 du manifeste utilise la même échelle que .section-title, mais on garde
+  ce sélecteur local pour ne pas imposer un wrapper spécifique au HTML.
+*/
+.manifesto h2 {
+  margin: 0;
+  font-size: clamp(3.1rem, 7vw, 7rem);
+  line-height: .92;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.manifesto__subtitle {
+  margin: 16px 0 42px;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: .98;
+  font-weight: 800;
+}
+
+.manifesto__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 2px solid rgba(0, 0, 1, .2);
+}
+
+.manifesto__list li {
+  padding: 20px 0;
+  border-bottom: 2px solid rgba(0, 0, 1, .2);
+  font-size: clamp(1.05rem, 1.7vw, 1.55rem);
+}
+
+.manifesto__closing {
+  margin-top: 32px;
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  font-weight: 800;
+}
+
+.manifesto__visual {
+  position: relative;
+}
+
+.manifesto__badge {
+  position: absolute;
+  right: 7%;
+  bottom: 8%;
+  width: 32vw;
+  max-width: 170px;
+}

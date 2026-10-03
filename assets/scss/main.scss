@@ -1,0 +1,38 @@
+/* ==========================================================================
+   KISSARI — POINT D'ENTRÉE SCSS HUGO PIPES
+   ========================================================================== */
+
+/*
+  Ce fichier est volontairement un manifeste d'import uniquement.
+
+  Pourquoi ?
+  - éviter un main.scss “fourre-tout” ;
+  - rendre chaque section facile à trouver ;
+  - limiter les effets de cascade involontaires ;
+  - pouvoir modifier le hero, le manifeste ou le footer sans traverser 300 lignes.
+
+  Ordre de cascade :
+  1. tokens : variables globales ;
+  2. fonts : @font-face ;
+  3. base/layout : fondations ;
+  4. components/sections : styles métier ;
+  5. responsive/accessibility : overrides contrôlés et utilitaires.
+*/
+@use 'tokens';
+@use 'fonts';
+@use 'base';
+@use 'layout';
+
+@use 'components/header';
+@use 'components/footer';
+@use 'components/pages';
+
+@use 'sections/hero';
+@use 'sections/separator';
+@use 'sections/manifesto';
+@use 'sections/expertises';
+@use 'sections/blog';
+@use 'sections/newsletter';
+
+@use 'responsive';
+@use 'accessibility';

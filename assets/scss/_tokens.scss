@@ -1,0 +1,38 @@
+/* ==========================================================================
+   DESIGN TOKENS — SOURCE DES VARIABLES VISUELLES GLOBALES
+   ========================================================================== */
+
+/*
+  Ce fichier ne doit contenir que des variables de design globales.
+
+  Règle de maintenance :
+  - une couleur utilisée à plusieurs endroits doit être déclarée ici ;
+  - un rayon, une largeur max ou une famille typographique commune aussi ;
+  - ne pas ajouter ici de styles de composants, sinon la cascade redevient
+    brumeuse comme une réunion où tout le monde parle de “quick win”.
+*/
+:root {
+  /* Couleurs issues de la maquette et du RTF fourni. */
+  --color-black: #000001;
+  --color-grey: #9d9d9c;
+  --color-cream: #f8f8f5;
+  --color-pink: #febab8;
+  --color-yellow: #fcec89;
+  --color-blue: #c9eff7;
+  --color-lilac: #dccbf0;
+  --color-green: #d7e69a;
+  --color-white: #ffffff;
+
+  /* Typographie principale : Poppins auto-hébergée. */
+  --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Largeur du conteneur central desktop. */
+  --container: 1220px;
+
+  /* Rayons communs : cartes larges et boutons pilules. */
+  --radius-lg: 36px;
+  --radius-pill: 999px;
+
+  /* Ombre douce prévue pour variantes futures de cartes/overlays. */
+  --shadow-soft: 0 24px 80px rgba(0, 0, 1, .10);
+}

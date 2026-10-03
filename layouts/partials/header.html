@@ -1,0 +1,14 @@
+<header class="site-header">
+  <div class="site-container site-header__inner">
+    <a class="site-header__logo" href="{{ relURL "" }}" aria-label="KISSARI — accueil">
+      <img src="{{ relURL "images/logo-blanc-kissari.png" }}" alt="KISSARI">
+    </a>
+    <button class="site-header__toggle" type="button" aria-controls="site-navigation" aria-expanded="false" data-nav-toggle>Menu</button>
+    <nav id="site-navigation" class="site-header__nav" aria-label="Navigation principale">
+      {{ range site.Menus.main }}
+        <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+      <span class="site-header__lang" aria-label="Langue actuelle">FR</span>
+    </nav>
+  </div>
+</header>

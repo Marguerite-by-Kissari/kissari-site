@@ -1,0 +1,61 @@
+/* ==========================================================================
+   SECTION — NEWSLETTER PLACEHOLDER
+   ========================================================================== */
+
+/*
+  En V1, cette section est volontairement non fonctionnelle.
+  Le formulaire est conservé en HTML pour préparer la structure accessible,
+  mais les champs/boutons sont disabled côté template.
+*/
+.newsletter {
+  padding: 0 0 clamp(80px, 10vw, 160px);
+  background: var(--color-white);
+}
+
+.newsletter__box {
+  border-radius: var(--radius-lg);
+  background: var(--color-blue);
+  padding: clamp(32px, 6vw, 80px);
+  text-align: center;
+}
+
+.newsletter h2 {
+  margin: 0 0 12px;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  line-height: .98;
+  letter-spacing: -0.05em;
+}
+
+.newsletter p {
+  margin: 0 auto 26px;
+  max-width: 720px;
+  font-size: 1.12rem;
+}
+
+.newsletter__form {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.newsletter input {
+  width: 100%;
+  max-width: 380px;
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-pill);
+  padding: 14px 18px;
+  font: inherit;
+  background: var(--color-white);
+}
+
+.button {
+  border: 2px solid var(--color-black);
+  border-radius: var(--radius-pill);
+  padding: 14px 22px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font: inherit;
+  font-weight: 800;
+  cursor: not-allowed;
+}

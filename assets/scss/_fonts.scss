@@ -1,0 +1,50 @@
+/* ==========================================================================
+   FONTS — DÉCLARATIONS @font-face POPPINS
+   ========================================================================== */
+
+/*
+  Les polices sont auto-hébergées dans /static/fonts/poppins/.
+
+  Pourquoi ici ?
+  - isoler la partie légale/technique des fonts ;
+  - éviter de dupliquer @font-face dans plusieurs fichiers ;
+  - pouvoir remplacer plus tard les .ttf par des .woff2 sans toucher
+    aux composants.
+
+  Poids utiles V1 :
+  - 400 Regular : textes courants ;
+  - 600 SemiBold : interfaces si besoin ;
+  - 700 Bold : navigation et accents ;
+  - 800 ExtraBold : grands titres de la maquette.
+*/
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,13 @@
+/* ==========================================================================
+   SECTION — SÉPARATEUR VISUEL DÉCORATIF
+   ========================================================================== */
+
+/*
+  Frise issue de `Separation visuel.png`.
+  Elle est décorative : l'image doit rester alt="" côté HTML.
+*/
+.visual-separator img {
+  width: 100%;
+  height: clamp(58px, 8vw, 132px);
+  object-fit: cover;
+}
