@@ -110,6 +110,24 @@ def test_generated_links_and_placeholders() -> None:
         assert_file(BUILD / rel)
 
 
+def test_compiled_css_is_real_and_sanitized() -> None:
+    """Prevent the exact visual regression seen in local hugo server.
+
+    If Sass imports leak into the served stylesheet, the browser ignores nearly
+    all styling and the page appears as raw HTML/images. Also catch Hugo's
+    `ZgotmplZ` sanitizer placeholder, which appears when unsafe inline CSS is
+    emitted from templates.
+    """
+    run_hugo()
+    css_files = list(BUILD.glob('scss/main*.css'))
+    assert css_files, 'Compiled stylesheet must be generated under /scss/'
+    css = css_files[0].read_text(encoding='utf-8')
+    assert len(css) > 5000, f'Compiled stylesheet is suspiciously small: {len(css)} bytes'
+    assert '@use' not in css and '@import' not in css, 'Raw Sass imports leaked into generated CSS'
+    html = read(BUILD / 'index.html')
+    assert 'ZgotmplZ' not in html, 'Hugo sanitized unsafe CSS into ZgotmplZ'
+
+
 def test_no_forbidden_generated_or_mac_files_tracked() -> None:
     result = subprocess.run(['git', 'ls-files'], cwd=ROOT, text=True, capture_output=True)
     assert result.returncode == 0, result.stderr
@@ -125,6 +143,7 @@ def main() -> None:
         test_required_source_files_exist,
         test_hugo_build_contains_required_v1_content,
         test_generated_links_and_placeholders,
+        test_compiled_css_is_real_and_sanitized,
         test_no_forbidden_generated_or_mac_files_tracked,
     ]
     failures = []

@@ -18,21 +18,29 @@
   4. components/sections : styles métier ;
   5. responsive/accessibility : overrides contrôlés et utilitaires.
 */
-@use 'tokens';
-@use 'fonts';
-@use 'base';
-@use 'layout';
+/*
+  IMPORTANT HUGO PIPES :
+  La version Hugo/LibSass disponible ici ne résout pas correctement `@use`.
+  Avec `@use`, le navigateur recevait une CSS contenant littéralement les
+  imports Sass, donc aucun style réel n'était appliqué en `hugo server`.
 
-@use 'components/header';
-@use 'components/footer';
-@use 'components/pages';
+  On utilise donc `@import` pour cette V1. C'est volontaire et testé.
+*/
+@import 'tokens';
+@import 'fonts';
+@import 'base';
+@import 'layout';
 
-@use 'sections/hero';
-@use 'sections/separator';
-@use 'sections/manifesto';
-@use 'sections/expertises';
-@use 'sections/blog';
-@use 'sections/newsletter';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/pages';
 
-@use 'responsive';
-@use 'accessibility';
+@import 'sections/hero';
+@import 'sections/separator';
+@import 'sections/manifesto';
+@import 'sections/expertises';
+@import 'sections/blog';
+@import 'sections/newsletter';
+
+@import 'responsive';
+@import 'accessibility';

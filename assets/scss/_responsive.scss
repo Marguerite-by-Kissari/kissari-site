@@ -9,19 +9,20 @@
   - voir vite ce qui change en mobile ;
   - éviter de chasser des overrides dans 12 fichiers ;
   - garder la cascade lisible.
-
-  Règle : si un composant devient très complexe, on pourra déplacer ses media
-  queries dans son fichier, mais pour la V1 la centralisation est plus claire.
 */
 @media (max-width: 900px) {
-  /* Header mobile : bouton visible, menu transformé en panneau vertical. */
+  .site-header__inner {
+    grid-template-columns: 80px 1fr auto;
+  }
+
   .site-header__toggle {
     display: inline-flex;
+    justify-self: end;
   }
 
   .site-header__nav {
     position: fixed;
-    inset: 82px 0 auto 0;
+    inset: 75px 0 auto 0;
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -34,38 +35,71 @@
     display: flex;
   }
 
-  .site-header__nav a {
-    font-size: 1.3rem;
+  .site-header__lang {
+    display: none;
   }
 
-  /* Hero : scène graphique resserrée pour éviter les débordements. */
   .hero__art {
-    height: 500px;
+    min-height: 520px;
+  }
+
+  .hero__brand-card {
+    width: 70vw;
+    max-width: 420px;
+  }
+
+  .hero__brand-logo {
+    width: 116px;
+    margin-bottom: 56px;
+  }
+
+  .hero__brand-card span {
+    bottom: 92px;
   }
 
   .hero__woman {
-    width: 220px;
-    left: 0;
+    left: -8px;
+    width: 205px;
   }
 
   .hero__circle {
-    width: 280px;
-    right: -30px;
+    right: -25px;
+    top: 280px;
+    width: 245px;
   }
 
   .hero__picto {
-    width: 150px;
-    right: 70px;
+    right: 30px;
+    top: 325px;
+    width: 128px;
   }
 
-  /* Sections en colonnes : retour en flux vertical. */
   .manifesto__grid {
     grid-template-columns: 1fr;
+  }
+
+  .manifesto__visual {
+    min-height: 420px;
+  }
+
+  .manifesto__visual > img:first-child {
+    right: -18%;
+    width: 90vw;
+    max-width: 620px;
+  }
+
+  .expertises__intro .section-title {
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
 
   .expertises__grid,
   .blog-preview__grid {
     grid-template-columns: 1fr;
+  }
+
+  .expertises__grid {
+    border-radius: 36px;
   }
 
   .blog-preview__head {
@@ -80,40 +114,59 @@
 }
 
 @media (max-width: 560px) {
-  /* Mobile étroit : réduire le hero pour éviter un premier écran interminable. */
   .hero {
-    min-height: auto;
+    padding-top: 44px;
   }
 
   .hero__art {
-    height: 390px;
+    min-height: 420px;
+  }
+
+  .hero__brand-card {
+    width: 76vw;
   }
 
   .hero__woman {
-    width: 165px;
+    width: 145px;
+    top: 35px;
+  }
+
+  .hero__ghost-logo {
+    display: none;
   }
 
   .hero__circle {
-    width: 220px;
+    width: 185px;
+    top: 245px;
   }
 
   .hero__picto {
-    width: 116px;
-    right: 54px;
+    width: 96px;
+    top: 282px;
   }
 
-  /* Les cartes gardent assez de hauteur pour laisser vivre les personnages. */
+  .manifesto__visual {
+    min-height: 330px;
+  }
+
   .expertise-card {
-    min-height: 620px;
+    min-height: 590px;
+    padding: 32px 28px;
   }
 
   .expertise-card__person {
-    width: 58%;
+    opacity: .96;
+  }
+
+  .expertise-card--blue .expertise-card__person,
+  .expertise-card--yellow .expertise-card__person,
+  .expertise-card--lilac .expertise-card__person,
+  .expertise-card--green .expertise-card__person {
+    width: 72%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Respect des personnes sensibles au mouvement. */
   *,
   *::before,
   *::after {
