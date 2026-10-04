@@ -2,6 +2,14 @@
    COMPONENT — HEADER / NAVIGATION PRINCIPALE
    ========================================================================== */
 
+/*
+  Specs header — base maquette 1920 px :
+  - fond noir #000001 ;
+  - textes Poppins Bold 20 “pts” de maquette, transposés en 20px CSS à 1920 ;
+  - liens gris #9d9d9c ;
+  - lien actif blanc + soulignage rose #febab8 ;
+  - FR / EN à droite.
+*/
 .site-header {
   position: sticky;
   top: 0;
@@ -10,12 +18,19 @@
   color: var(--color-white);
 }
 
+.site-header .site-container {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+  padding-inline: clamp(22px, 3.65vw, 70px);
+}
+
 .site-header__inner {
-  min-height: clamp(60px, 4.8vw, 92px);
+  min-height: clamp(58px, 4.8vw, 92px);
   display: grid;
-  grid-template-columns: clamp(90px, 10vw, 210px) 1fr clamp(78px, 7vw, 140px);
+  grid-template-columns: clamp(88px, 11.5vw, 220px) 1fr clamp(70px, 7.6vw, 146px);
   align-items: center;
-  gap: clamp(18px, 2vw, 44px);
+  gap: clamp(16px, 2vw, 38px);
 }
 
 .site-header__logo {
@@ -25,7 +40,7 @@
 }
 
 .site-header__logo img {
-  width: clamp(52px, 4.1vw, 86px);
+  width: clamp(48px, 3.75vw, 72px);
   height: auto;
 }
 
@@ -33,15 +48,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(24px, 2.3vw, 58px);
+  gap: clamp(20px, 2.25vw, 43px);
 }
 
 .site-header__nav a {
   position: relative;
   color: var(--color-grey);
-  font-size: clamp(.82rem, .92vw, 1.25rem);
+  font-size: clamp(.78rem, 1.0417vw, 1.25rem);
   line-height: 1;
   font-weight: 800;
+  white-space: nowrap;
   transition: color .2s ease;
 }
 
@@ -55,8 +71,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: clamp(-14px, -0.85vw, -9px);
-  height: 3px;
+  bottom: clamp(-13px, -.78vw, -9px);
+  height: clamp(2px, .21vw, 4px);
   border-radius: var(--radius-pill);
   background: var(--color-pink);
 }
@@ -64,14 +80,15 @@
 .site-header__lang {
   justify-self: end;
   color: var(--color-white);
-  font-size: clamp(.82rem, .92vw, 1.25rem);
+  font-size: clamp(.78rem, 1.0417vw, 1.25rem);
   line-height: 1;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .site-header__lang::after {
   content: ' / EN';
-  color: var(--color-grey);
+  color: var(--color-white);
 }
 
 .site-header__toggle {

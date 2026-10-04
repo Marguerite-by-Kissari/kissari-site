@@ -8,7 +8,7 @@
       {{ range site.Menus.main }}
         <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{ end }}
-      <span class="site-header__lang" aria-label="Langue actuelle">FR</span>
     </nav>
+    <span class="site-header__lang" aria-label="Langue actuelle">FR</span>
   </div>
 </header>
