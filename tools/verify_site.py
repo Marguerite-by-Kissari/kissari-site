@@ -81,8 +81,6 @@ def test_hugo_build_contains_required_v1_content() -> None:
         'Transformer',
         'Créer',
         'Faire rayonner',
-        'Nos dernières inspirations',
-        'Newsletter bientôt disponible',
         'KISSARI',
     ]
     for text in expected_strings:
@@ -176,8 +174,8 @@ def test_homepage_responsive_viewports() -> None:
                         hasNewsletter: !!document.querySelector('.newsletter')
                       };
                     }''')
-                    assert metrics['hasBlog'], 'Homepage must keep blog placeholder per spec'
-                    assert metrics['hasNewsletter'], 'Homepage must keep newsletter placeholder per spec'
+                    assert not metrics['hasBlog'], 'Homepage must not show blog preview during step-by-step visual correction'
+                    assert not metrics['hasNewsletter'], 'Homepage must not show newsletter during step-by-step visual correction'
                     assert metrics['scrollWidth'] <= metrics['clientWidth'] + 2, (
                         f'Horizontal overflow at {width}px: {metrics}'
                     )
