@@ -1,28 +1,28 @@
-/* ==========================================================================
+/* ========================================================================== 
    SECTION — EXPERTISES / 4 CARTES
    ========================================================================== */
 
 .expertises {
-  padding: clamp(76px, 9vw, 136px) 0 clamp(88px, 10vw, 150px);
+  padding: 66px 0 86px;
   background: var(--color-cream);
 }
 
 .expertises__intro {
-  margin-bottom: clamp(50px, 7vw, 82px);
+  margin-bottom: 58px;
 }
 
 .expertises__intro .section-eyebrow {
-  margin-bottom: 42px;
-  font-size: clamp(1.05rem, 1.45vw, 1.55rem);
+  margin-bottom: 38px;
+  font-size: 17px;
   font-weight: 400;
 }
 
 .expertises__intro .section-title {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(48px, 7vw, 110px);
+  gap: 70px;
   align-items: start;
-  font-size: clamp(3rem, 5.5vw, 5.3rem);
+  font-size: clamp(3.15rem, 5vw, 4.75rem);
   line-height: .98;
   letter-spacing: -0.055em;
 }
@@ -32,14 +32,14 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
   overflow: hidden;
-  border-radius: 58px;
+  border-radius: 46px;
 }
 
 .expertise-card {
   position: relative;
-  min-height: clamp(560px, 55vw, 710px);
+  min-height: 515px;
   overflow: hidden;
-  padding: clamp(34px, 4vw, 60px);
+  padding: 38px 30px;
   background: var(--card-bg, var(--color-blue));
   isolation: isolate;
 }
@@ -53,26 +53,26 @@
   display: flex;
   align-items: start;
   gap: 18px;
-  margin-bottom: 42px;
+  margin-bottom: 30px;
 }
 
 .expertise-card__number {
-  margin: 9px 0 0;
+  margin: 8px 0 0;
   font-weight: 400;
-  font-size: .95rem;
+  font-size: 12px;
 }
 
 .expertise-card__icon {
-  width: 54px;
+  width: 48px;
   height: auto;
 }
 
 .expertise-card h3 {
   position: relative;
   z-index: 2;
-  max-width: 520px;
+  max-width: 420px;
   margin: 0;
-  font-size: clamp(3.2rem, 5.8vw, 6.2rem);
+  font-size: clamp(3.25rem, 5vw, 4.85rem);
   line-height: .9;
   letter-spacing: -0.06em;
   text-transform: uppercase;
@@ -82,59 +82,53 @@
 .expertise-card__subtitle {
   position: relative;
   z-index: 2;
-  margin: 16px 0 34px;
-  max-width: 430px;
-  font-size: clamp(1.85rem, 3.1vw, 3.1rem);
-  line-height: 1.02;
+  margin: 10px 0 28px;
+  max-width: 360px;
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  line-height: 1;
   font-weight: 800;
 }
 
 .expertise-card__text {
   position: relative;
   z-index: 2;
-  max-width: 370px;
-  font-size: clamp(1rem, 1.55vw, 1.25rem);
-  line-height: 1.22;
+  max-width: 290px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.12;
 }
 
 .expertise-card__link {
-  position: relative;
-  z-index: 3;
-  display: inline-flex;
-  margin-top: 18px;
-  font-weight: 800;
+  display: none;
 }
 
 .expertise-card__person {
   position: absolute;
   z-index: 1;
   max-width: none;
+  pointer-events: none;
 }
 
 .expertise-card--blue .expertise-card__person {
-  right: 3%;
-  bottom: -9%;
-  width: 42vw;
-  max-width: 430px;
+  right: 53px;
+  bottom: -18px;
+  width: 300px;
 }
 
 .expertise-card--yellow .expertise-card__person {
-  right: -5%;
+  right: -40px;
   bottom: 0;
-  width: 38vw;
-  max-width: 390px;
+  width: 295px;
 }
 
 .expertise-card--lilac .expertise-card__person {
-  right: -4%;
-  bottom: -4%;
-  width: 38vw;
-  max-width: 390px;
+  right: 58px;
+  bottom: -2px;
+  width: 280px;
 }
 
 .expertise-card--green .expertise-card__person {
-  right: -5%;
-  bottom: -8%;
-  width: 40vw;
-  max-width: 430px;
+  right: -56px;
+  bottom: -34px;
+  width: 340px;
 }

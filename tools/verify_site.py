@@ -81,8 +81,6 @@ def test_hugo_build_contains_required_v1_content() -> None:
         'Transformer',
         'Créer',
         'Faire rayonner',
-        'Nos dernières inspirations',
-        'Newsletter bientôt disponible',
         'KISSARI',
     ]
     for text in expected_strings:

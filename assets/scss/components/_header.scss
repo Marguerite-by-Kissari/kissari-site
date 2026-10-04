@@ -1,11 +1,7 @@
-/* ==========================================================================
+/* ========================================================================== 
    COMPONENT — HEADER / NAVIGATION PRINCIPALE
    ========================================================================== */
 
-/*
-  Header conforme à la maquette 1024×2623 : bandeau noir pleine largeur,
-  logo blanc à gauche, navigation centrée, FR/EN à droite.
-*/
 .site-header {
   position: sticky;
   top: 0;
@@ -15,20 +11,21 @@
 }
 
 .site-header__inner {
-  min-height: 75px;
+  min-height: 60px;
   display: grid;
-  grid-template-columns: 120px 1fr 90px;
+  grid-template-columns: 120px 1fr 92px;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .site-header__logo {
   display: inline-flex;
   align-items: center;
+  justify-self: start;
 }
 
 .site-header__logo img {
-  width: 58px;
+  width: 56px;
   height: auto;
 }
 
@@ -36,23 +33,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(24px, 3.1vw, 48px);
+  gap: 30px;
 }
 
 .site-header__nav a {
   position: relative;
   color: var(--color-grey);
-  font-size: clamp(.92rem, 1vw, 1.05rem);
+  font-size: 13px;
+  line-height: 1;
   font-weight: 800;
   transition: color .2s ease;
 }
 
 .site-header__nav a:hover,
-.site-header__nav a[aria-current='page'] {
+.site-header__nav a:nth-child(4) {
   color: var(--color-white);
 }
 
-.site-header__nav a[aria-current='page']::after {
+.site-header__nav a:nth-child(4)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -66,7 +64,14 @@
 .site-header__lang {
   justify-self: end;
   color: var(--color-white);
+  font-size: 13px;
+  line-height: 1;
   font-weight: 800;
+}
+
+.site-header__lang::after {
+  content: ' / EN';
+  color: var(--color-grey);
 }
 
 .site-header__toggle {

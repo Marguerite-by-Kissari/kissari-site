@@ -1,4 +1,4 @@
-/* ==========================================================================
+/* ========================================================================== 
    SECTION — MANIFESTE
    ========================================================================== */
 
@@ -6,42 +6,43 @@
   position: relative;
   overflow: hidden;
   background: var(--color-pink);
-  padding: clamp(72px, 8vw, 118px) 0;
+  padding: 34px 0 54px;
 }
 
 .manifesto__grid {
-  min-height: clamp(510px, 53vw, 680px);
+  min-height: 470px;
   display: grid;
-  grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr);
+  grid-template-columns: 51% 49%;
   align-items: center;
-  gap: clamp(28px, 4vw, 70px);
+  gap: 0;
 }
 
 .manifesto .section-eyebrow {
-  margin-bottom: 32px;
-  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.2;
   font-weight: 400;
 }
 
 .manifesto h2 {
-  max-width: 560px;
+  max-width: 470px;
   margin: 0;
-  font-size: clamp(3.25rem, 6.1vw, 6.35rem);
-  line-height: .96;
+  font-size: clamp(3.6rem, 5vw, 4.9rem);
+  line-height: .94;
   font-weight: 800;
   letter-spacing: -0.055em;
 }
 
 .manifesto__subtitle {
-  margin: 22px 0 52px;
-  font-size: clamp(2rem, 3.8vw, 3.45rem);
+  margin: 16px 0 44px;
+  font-size: clamp(2rem, 3.1vw, 3.2rem);
   line-height: 1;
   font-weight: 800;
 }
 
 .manifesto__list {
   width: 100%;
-  max-width: 570px;
+  max-width: 455px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -49,41 +50,39 @@
 }
 
 .manifesto__list li {
-  padding: 18px 0;
+  padding: 13px 0;
   border-bottom: 1px solid rgba(0, 0, 1, .38);
-  font-size: clamp(1rem, 1.45vw, 1.28rem);
+  font-size: 15px;
   line-height: 1.35;
 }
 
 .manifesto__closing {
   display: inline-flex;
   margin-top: 28px;
-  padding: 14px 22px;
+  padding: 12px 18px;
   border-radius: var(--radius-pill);
   background: var(--color-yellow);
-  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  font-size: 15px;
   font-weight: 800;
 }
 
 .manifesto__visual {
   position: relative;
-  min-height: 620px;
+  min-height: 540px;
 }
 
 .manifesto__visual > img:first-child {
   position: absolute;
-  right: -34%;
-  bottom: -9%;
-  width: 67vw;
-  max-width: 790px;
+  right: -167px;
+  bottom: -18px;
+  width: 602px;
   max-width: none;
 }
 
 .manifesto__badge {
   position: absolute;
-  left: 36%;
-  top: 56%;
-  width: 18vw;
-  max-width: 210px;
+  left: 26%;
+  top: 51%;
+  width: 166px;
   max-width: none;
 }

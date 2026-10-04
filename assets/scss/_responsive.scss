@@ -1,17 +1,14 @@
-/* ==========================================================================
+/* ========================================================================== 
    RESPONSIVE — ADAPTATIONS TABLETTE / MOBILE
    ========================================================================== */
 
-/*
-  Centralisation volontaire des media queries.
-
-  Avantage :
-  - voir vite ce qui change en mobile ;
-  - éviter de chasser des overrides dans 12 fichiers ;
-  - garder la cascade lisible.
-*/
 @media (max-width: 900px) {
+  .site-container {
+    width: calc(100% - 36px);
+  }
+
   .site-header__inner {
+    min-height: 68px;
     grid-template-columns: 80px 1fr auto;
   }
 
@@ -22,7 +19,7 @@
 
   .site-header__nav {
     position: fixed;
-    inset: 75px 0 auto 0;
+    inset: 68px 0 auto 0;
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -39,22 +36,35 @@
     display: none;
   }
 
+  .hero {
+    padding-top: 48px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .hero__intro {
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+  }
+
   .hero__art {
-    min-height: 520px;
+    height: 520px;
   }
 
   .hero__brand-card {
-    width: 70vw;
+    width: 72vw;
     max-width: 420px;
   }
 
   .hero__brand-logo {
-    width: 116px;
+    width: 118px;
     margin-bottom: 56px;
   }
 
   .hero__brand-card span {
     bottom: 92px;
+    font-size: 38px;
   }
 
   .hero__woman {
@@ -88,6 +98,10 @@
     max-width: 620px;
   }
 
+  .manifesto__badge {
+    left: 12%;
+  }
+
   .expertises__intro .section-title {
     grid-template-columns: 1fr;
     gap: 22px;
@@ -114,16 +128,16 @@
 }
 
 @media (max-width: 560px) {
-  .hero {
-    padding-top: 44px;
+  .site-container {
+    width: calc(100% - 28px);
   }
 
   .hero__art {
-    min-height: 420px;
+    height: 430px;
   }
 
   .hero__brand-card {
-    width: 76vw;
+    width: 78vw;
   }
 
   .hero__woman {
@@ -163,6 +177,7 @@
   .expertise-card--lilac .expertise-card__person,
   .expertise-card--green .expertise-card__person {
     width: 72%;
+    right: -2%;
   }
 }
 
