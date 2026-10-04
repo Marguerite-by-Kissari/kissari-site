@@ -81,6 +81,8 @@ def test_hugo_build_contains_required_v1_content() -> None:
         'Transformer',
         'Créer',
         'Faire rayonner',
+        'Nos dernières inspirations',
+        'Newsletter bientôt disponible',
         'KISSARI',
     ]
     for text in expected_strings:
@@ -126,6 +128,75 @@ def test_compiled_css_is_real_and_sanitized() -> None:
     assert 'ZgotmplZ' not in html, 'Hugo sanitized unsafe CSS into ZgotmplZ'
 
 
+def test_homepage_responsive_viewports() -> None:
+    """Spec regression guard: mobile/tablet/desktop must not be a fixed vignette.
+
+    The V1 spec defines breakpoints (<768, 768–1199, >=1200) and asks for clamp()
+    based transposition. We validate the generated homepage in real browser
+    layout at representative widths.
+    """
+    run_hugo()
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as exc:  # pragma: no cover - environment fallback
+        print(f'SKIP Playwright responsive check unavailable: {exc}')
+        return
+
+    from functools import partial
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+    from threading import Thread
+
+    handler = partial(SimpleHTTPRequestHandler, directory=str(BUILD))
+    httpd = ThreadingHTTPServer(('127.0.0.1', 0), handler)
+    host = httpd.server_address[0]
+    port = httpd.server_address[1]
+    thread = Thread(target=httpd.serve_forever, daemon=True)
+    thread.start()
+    index = f'http://{host}:{port}/'
+    widths = [390, 768, 1024, 1440, 1920]
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            try:
+                for width in widths:
+                    page = browser.new_page(viewport={'width': width, 'height': 1200}, device_scale_factor=1)
+                    page.goto(index, wait_until='load')
+                    metrics = page.evaluate('''() => {
+                      const doc = document.documentElement;
+                      const hero = document.querySelector('.hero .site-container');
+                      const nav = document.querySelector('.site-header__nav');
+                      return {
+                        scrollWidth: doc.scrollWidth,
+                        clientWidth: doc.clientWidth,
+                        heroWidth: hero ? hero.getBoundingClientRect().width : 0,
+                        navDisplay: nav ? getComputedStyle(nav).display : '',
+                        navVisibility: nav ? getComputedStyle(nav).visibility : '',
+                        navPointerEvents: nav ? getComputedStyle(nav).pointerEvents : '',
+                        hasBlog: !!document.querySelector('.blog-preview'),
+                        hasNewsletter: !!document.querySelector('.newsletter')
+                      };
+                    }''')
+                    assert metrics['hasBlog'], 'Homepage must keep blog placeholder per spec'
+                    assert metrics['hasNewsletter'], 'Homepage must keep newsletter placeholder per spec'
+                    assert metrics['scrollWidth'] <= metrics['clientWidth'] + 2, (
+                        f'Horizontal overflow at {width}px: {metrics}'
+                    )
+                    if width >= 1200:
+                        assert metrics['heroWidth'] >= width * 0.86, (
+                            f'Desktop homepage is still too narrow/fixed at {width}px: {metrics}'
+                        )
+                    if width < 768:
+                        assert metrics['navVisibility'] == 'hidden' and metrics['navPointerEvents'] == 'none', (
+                            f'Mobile nav should be collapsed at {width}px: {metrics}'
+                        )
+                    page.close()
+            finally:
+                browser.close()
+    finally:
+        httpd.shutdown()
+        thread.join(timeout=3)
+
+
 def test_no_forbidden_generated_or_mac_files_tracked() -> None:
     result = subprocess.run(['git', 'ls-files'], cwd=ROOT, text=True, capture_output=True)
     assert result.returncode == 0, result.stderr
@@ -142,6 +213,7 @@ def main() -> None:
         test_hugo_build_contains_required_v1_content,
         test_generated_links_and_placeholders,
         test_compiled_css_is_real_and_sanitized,
+        test_homepage_responsive_viewports,
         test_no_forbidden_generated_or_mac_files_tracked,
     ]
     failures = []

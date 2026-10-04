@@ -11,11 +11,11 @@
 }
 
 .site-header__inner {
-  min-height: 60px;
+  min-height: clamp(60px, 4.8vw, 92px);
   display: grid;
-  grid-template-columns: 120px 1fr 92px;
+  grid-template-columns: clamp(90px, 10vw, 210px) 1fr clamp(78px, 7vw, 140px);
   align-items: center;
-  gap: 20px;
+  gap: clamp(18px, 2vw, 44px);
 }
 
 .site-header__logo {
@@ -25,7 +25,7 @@
 }
 
 .site-header__logo img {
-  width: 56px;
+  width: clamp(52px, 4.1vw, 86px);
   height: auto;
 }
 
@@ -33,13 +33,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: clamp(24px, 2.3vw, 58px);
 }
 
 .site-header__nav a {
   position: relative;
   color: var(--color-grey);
-  font-size: 13px;
+  font-size: clamp(.82rem, .92vw, 1.25rem);
   line-height: 1;
   font-weight: 800;
   transition: color .2s ease;
@@ -55,7 +55,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -12px;
+  bottom: clamp(-14px, -0.85vw, -9px);
   height: 3px;
   border-radius: var(--radius-pill);
   background: var(--color-pink);
@@ -64,7 +64,7 @@
 .site-header__lang {
   justify-self: end;
   color: var(--color-white);
-  font-size: 13px;
+  font-size: clamp(.82rem, .92vw, 1.25rem);
   line-height: 1;
   font-weight: 800;
 }

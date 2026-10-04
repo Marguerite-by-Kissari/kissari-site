@@ -4,14 +4,14 @@
 
 .hero {
   position: relative;
-  padding: 58px 0 0;
+  padding: clamp(48px, 4.7vw, 98px) 0 0;
   background: var(--color-cream);
 }
 
 .hero__eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 clamp(16px, 1.4vw, 30px);
   text-align: center;
-  font-size: 12px;
+  font-size: clamp(.82rem, .95vw, 1.35rem);
   font-weight: 800;
   letter-spacing: .01em;
 }
@@ -19,10 +19,10 @@
 .hero h1 {
   position: relative;
   z-index: 6;
-  max-width: 560px;
+  max-width: clamp(560px, 48vw, 1180px);
   margin: 0 auto;
   text-align: center;
-  font-size: clamp(3.25rem, 5.35vw, 5.25rem);
+  font-size: clamp(3.25rem, 5.95vw, 22.5rem);
   line-height: .9;
   letter-spacing: -0.062em;
   font-weight: 800;
@@ -46,10 +46,10 @@
 }
 
 .hero__intro {
-  max-width: 660px;
-  margin: 22px auto 0;
+  max-width: clamp(660px, 56vw, 1360px);
+  margin: clamp(20px, 1.9vw, 42px) auto 0;
   text-align: center;
-  font-size: 19px;
+  font-size: clamp(1.15rem, 1.45vw, 3.1rem);
   line-height: 1.35;
   font-weight: 400;
 }
@@ -61,8 +61,8 @@
 
 .hero__art {
   position: relative;
-  height: 470px;
-  margin-top: 34px;
+  height: clamp(470px, 46vw, 2800px);
+  margin-top: clamp(30px, 3vw, 82px);
 }
 
 .hero__brand-card {
@@ -70,7 +70,7 @@
   left: 50%;
   top: 0;
   z-index: 3;
-  width: 410px;
+  width: clamp(410px, 38vw, 2500px);
   aspect-ratio: 1 / 1;
   transform: translateX(-50%);
   display: grid;
@@ -99,7 +99,7 @@
 .hero__brand-logo {
   position: relative;
   z-index: 2;
-  width: 205px;
+  width: clamp(205px, 19vw, 1180px);
   filter: brightness(0);
 }
 
@@ -109,24 +109,24 @@
 
 .hero__woman {
   position: absolute;
-  left: 48px;
-  top: 24px;
+  left: 5.1%;
+  top: 5.1%;
   z-index: 5;
-  width: 218px;
+  width: clamp(218px, 20.5vw, 1320px);
 }
 
 .hero__ghost-logo {
   position: absolute;
-  left: -88px;
-  bottom: -53px;
+  left: -9.5%;
+  bottom: -11.3%;
   z-index: 1;
-  width: 335px;
-  height: 335px;
+  width: clamp(335px, 32vw, 2100px);
+  height: clamp(335px, 32vw, 2100px);
   display: grid;
   place-items: center;
   border-radius: 50%;
   color: rgba(255, 255, 255, .76);
-  font-size: 18rem;
+  font-size: clamp(18rem, 17vw, 105rem);
   font-weight: 800;
   line-height: 1;
   overflow: hidden;
@@ -134,16 +134,16 @@
 
 .hero__circle {
   position: absolute;
-  right: 145px;
-  top: 224px;
+  right: 15.3%;
+  top: 47.5%;
   z-index: 2;
-  width: 208px;
+  width: clamp(208px, 19.5vw, 1280px);
 }
 
 .hero__picto {
   position: absolute;
-  right: 91px;
-  top: 252px;
+  right: 9.6%;
+  top: 53.5%;
   z-index: 4;
-  width: 110px;
+  width: clamp(110px, 10.4vw, 680px);
 }
