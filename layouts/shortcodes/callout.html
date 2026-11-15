@@ -1,0 +1,4 @@
+<aside class="article-callout article-callout--{{ .Get "color" | default "pink" }}" aria-label="{{ .Get "label" | default "Encadré éditorial" }}">
+  {{ with .Get "title" }}<p class="article-callout__title">{{ . }}</p>{{ end }}
+  <div class="article-callout__body">{{ partial "callout-body.html" (dict "Inner" .Inner "Ordinal" .Ordinal "Page" .Page) }}</div>
+</aside>

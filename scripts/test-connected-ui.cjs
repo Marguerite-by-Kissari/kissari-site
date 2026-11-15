@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs'); const path=require('node:path');
+const folder=path.resolve(__dirname,'../static/atelier-article');
+assert(fs.existsSync(path.join(folder,'publication-date.js')),'Missing publication date adapter');
+const date=require(path.join(folder,'publication-date.js'));
+assert.equal(date.toISO('2099-01-12','09:30'),'2099-01-12T09:30:00+01:00');
+assert.equal(date.toISO('2027-07-12','09:30'),'2027-07-12T09:30:00+02:00');
+assert.throws(()=>date.toISO('2027-03-28','02:30'),/inexistante|ambiguë/);
+assert.throws(()=>date.toISO('2027-10-31','02:30'),/inexistante|ambiguë/);
+assert.throws(()=>date.toISO('2027-02-30','09:00'),/invalide/);
+const source=fs.readFileSync(path.join(folder,'atelier-source.html'),'utf8');
+for(const id of ['m15-test','article-test','publication-time','test-result'])assert(source.includes('id="'+id+'"'),'Missing '+id);
+console.log('PASS timezone, DST boundaries, invalid date and both test actions');

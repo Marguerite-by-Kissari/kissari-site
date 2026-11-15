@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} — KISSARI</title>
+  <meta name="description" content="{{ .Description }}">
+  <link rel="icon" href="{{ "favicons/favicon.ico" | relURL }}?v=20261015-3" sizes="any">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
+  <script src="{{ "js/article-notes.js" | relURL }}?v={{ readFile "static/js/article-notes.js" | sha256 }}" defer></script>
+</head>
+<body class="blog-page article-page">
+  <header class="site-header" aria-label="KISSARI">
+    <a href="{{ "/" | relURL }}" aria-label="KISSARI — accueil"><img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"></a>
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a class="active" href="{{ "/blog/" | relURL }}">Le blog par KA</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
+    </nav>
+    <p class="language"><strong>FR</strong> / EN</p>
+  </header>
+
+  <main>
+    {{ $categoryID := index .Params.categories 0 }}
+    <section class="article-hero" data-category="{{ $categoryID | urlize }}" aria-labelledby="article-title">
+      <div class="article-hero__inner">
+        <div class="article-hero__copy">
+          <a class="article-back" href="{{ "/blog/" | relURL }}">← Retour au blog</a>
+          <p class="article-category">#{{ $categoryID | title }}</p>
+          <h1 id="article-title">{{ .Title }}</h1>
+          <p class="article-lead">{{ .Description }}</p>
+        </div>
+        <div class="article-hero__visual">
+          <img src="{{ partial "blog-image-url.html" . }}" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </section>
+    <div class="separator" aria-hidden="true"><img src="{{ "images/separation-visuel-tight.png" | relURL }}" alt="" aria-hidden="true"></div>
+
+    <article class="article-shell">
+      <div class="article-content">
+        {{ $articleBody := .Content | string }}
+        {{ range .Store.Get "callout-note-footers" }}{{ $articleBody = printf "%s%s" $articleBody . }}{{ end }}
+        {{ partial "article-notes.html" $articleBody }}
+      </div>
+    </article>
+
+    {{ partial "article-next-banner.html" . }}
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__inner"><img class="site-footer__logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"><p class="site-footer__tagline"><strong>Votre partenaire </strong><span class="site-footer__trans">trans</span><strong>formation</strong></p><nav class="site-footer__links" aria-label="Informations légales"><a href="/mentions-legales/">Mentions légales</a><a href="/cgv/">CGV</a><a href="/contact/">Nous contacter</a></nav></div></footer>
+</body>
+</html>

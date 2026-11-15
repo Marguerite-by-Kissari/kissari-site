@@ -1,0 +1,20 @@
+{{- /* Render local Markdown without losing global inline-note definitions.
+     Shortcode markdownify has its own Goldmark context. Move its note footer
+     outside the callout and namespace IDs to avoid collisions with page notes. */ -}}
+{{- $body := .Inner -}}
+{{- $prefix := printf "callout-%d-" .Ordinal -}}
+{{- if findRE `\[\^note-[a-z0-9-]+\]` $body -}}
+  {{- $definitions := findRE `(?m)^\[\^note-[a-z0-9-]+\]:[^\n]*(?:\n[ \t]+[^\n]*)*` .Page.RawContent -}}
+  {{- range $definitions -}}
+    {{- $body = printf "%s\n\n%s" $body . -}}
+  {{- end -}}
+{{- end -}}
+{{- $html := $body | markdownify | string -}}
+{{- $html = replace $html `fnref:` (printf "fnref:%s" $prefix) -}}
+{{- $html = replace $html `fn:` (printf "fn:%s" $prefix) -}}
+{{- $footers := findRE `(?s)<div class="footnotes"[^>]*>.*?</div>` $html -}}
+{{- range $footers -}}
+  {{- $.Page.Store.Add "callout-note-footers" (slice (. | safeHTML)) -}}
+  {{- $html = replace $html . "" -}}
+{{- end -}}
+{{- return ($html | safeHTML) -}}

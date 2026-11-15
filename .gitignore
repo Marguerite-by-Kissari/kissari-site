@@ -1,15 +1,17 @@
-# Kissari local spec-driven source of truth (intentionally not versioned)
-.spec-driven/
-
-# Hugo generated/build artifacts
-public/
-resources/_gen/
-.hugo_build.lock
-
-# Local source archives and OS/editor noise
-_sources/
-.DS_Store
-__MACOSX/
-._*
-*.swp
-*.swo
+# Hugo generated output and local-only working files
+/public/
+/resources/
+/.hugo_build.lock
+/.editorial-import.lock
+/livrables/
+/test-reports/
+__pycache__/
+*.py[cod]
+/.blog-*.png
+/.DS_Store
+/.env
+/.env.*
+!.env.example
+*.pem
+*.key
+node_modules/

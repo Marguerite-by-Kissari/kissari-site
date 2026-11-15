@@ -1,0 +1,39 @@
+{{- $pages := .pages -}}
+{{- $id := .id -}}
+{{- $category := .category -}}
+<section class="blog-row" data-category="{{ $id }}" aria-labelledby="{{ $id }}-title">
+  <div class="blog-row__head">
+    <h2 id="{{ $id }}-title">{{ .title }}</h2>
+    <div class="blog-row__arrows">
+      <button type="button" data-prev aria-controls="{{ $id }}-track" aria-label="{{ .title }} : articles précédents">←</button>
+      <button type="button" data-next aria-controls="{{ $id }}-track" aria-label="{{ .title }} : articles suivants">→</button>
+    </div>
+  </div>
+  <div class="blog-scroll">
+    <div class="blog-track" id="{{ $id }}-track" tabindex="0" role="region" aria-labelledby="{{ $id }}-title">
+      {{ range $page := $pages }}
+        {{ $categoryID := index $page.Params.categories 0 }}
+        {{ $pageCategory := dict "color" "blue" "label" $categoryID }}
+        {{ range where site.Data.blog_preview.categories "id" $categoryID }}
+          {{ $pageCategory = . }}
+        {{ end }}
+        {{ $color := $pageCategory.color }}
+        {{ $label := $pageCategory.label }}
+        <article class="article-card article-card--{{ $color }}">
+          <figure class="article-card__image">
+            <img src="{{ partial "blog-image-url.html" $page }}" alt="" loading="lazy">
+          </figure>
+          <div class="article-card__body">
+            <div class="article-card__meta">
+              <p>#{{ $label }}</p>
+              {{ with $page.PublishDate }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "02.01.2006" }}</time>{{ end }}
+            </div>
+            <h3>{{ $page.Title }}</h3>
+            <p class="article-card__summary">{{ $page.Description }}</p>
+            <a href="{{ $page.RelPermalink }}">Lire l'article <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

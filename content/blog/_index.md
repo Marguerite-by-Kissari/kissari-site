@@ -1,8 +1,6 @@
 ---
 title: "Le blog"
-description: "Articles placeholders en attendant les contenus fournis."
+description: "Articles de fond, outils testés, paroles d'experts et actualités : tout ce qui nous anime sans langue de bois."
+outputs: ["HTML", "EditorialCatalog"]
 draft: false
-placeholder: true
 ---
-
-Contenu placeholder V1. Le contenu définitif sera intégré après réception et validation.

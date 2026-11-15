@@ -1,7 +1,120 @@
-{{ define "main" }}
-  {{ partial "hero.html" . }}
-  {{ partial "separator.html" . }}
-  {{ partial "manifesto.html" . }}
-  {{ partial "separator.html" . }}
-  {{ partial "expertise-grid.html" . }}
-{{ end }}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KISSARI — bientôt</title>
+  <link rel="icon" href="{{ "favicons/favicon.ico" | relURL }}?v=20261015-3" sizes="any">
+  <link rel="icon" type="image/png" href="{{ "favicons/favicon-32.png" | relURL }}?v=20261015-3" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ "favicons/favicon-512.png" | relURL }}?v=20261015-3" sizes="512x512">
+  <link rel="apple-touch-icon" href="{{ "favicons/apple-touch-icon.png" | relURL }}?v=20261015-3" sizes="180x180">
+  <meta name="theme-color" content="#141414">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
+  <script src="{{ "js/hero-video.js" | relURL }}" defer></script>
+</head>
+<body class="home-page">
+  <header class="site-header" aria-label="Kissari">
+    <img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="Kissari">
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a href="{{ "/blog/" | relURL }}">Le blog par KA</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
+    </nav>
+    <p class="language"><strong>FR</strong> / EN</p>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker">BIENVENUE DANS L’UNIVERS DE KISSARI</p>
+        <h1 id="hero-title">Le nouveau site<br>arrive <span>bientôt.</span></h1>
+        <p class="hero-lead">En attendant, découvrez ce qui nous anime <strong>ici</strong> et dans notre <strong>blog.</strong></p>
+      </div>
+      <div class="hero-woman-panel" aria-hidden="true">
+        <span class="hero-watermark"><img src="{{ "images/logo-kissari.png" | relURL }}" alt=""></span>
+        <img class="hero-woman" src="{{ "images/Femme.png" | relURL }}" alt="">
+      </div>
+
+      <div class="hero-visual">
+        <button type="button" class="hero-media-badge" aria-controls="hero-presentation" aria-label="Lire la vidéo de présentation de KISSARI">
+          <img class="hero-circle" src="{{ "images/Cercle bleu.png" | relURL }}" alt="">
+          <img class="hero-player" src="{{ "images/Pictogramme.png" | relURL }}" alt="">
+        </button>
+        <video id="hero-presentation" class="hero-panel" controls autoplay loop muted playsinline preload="metadata" poster="{{ "images/hero-brand-panel.png" | relURL }}" aria-label="Présentation de KISSARI">
+          <source src="{{ "videos/KISSARI-morph-1200x1200-OK.mp4" | relURL }}" type="video/mp4">
+          <a href="{{ "videos/KISSARI-morph-1200x1200-OK.mp4" | relURL }}">Lire la vidéo de présentation de KISSARI</a>
+        </video>
+        <p class="hero-video-status" role="status" hidden>La lecture n’a pas démarré. Utilisez les commandes du lecteur ou <a href="{{ "videos/KISSARI-morph-1200x1200-OK.mp4" | relURL }}">ouvrez la vidéo directement</a>.</p>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"><img src="{{ "images/separation-visuel-tight.png" | relURL }}" alt=""></div>
+
+    <section class="manifest" id="notre-manifeste" aria-labelledby="manifest-title">
+      <div class="manifest-copy">
+        <p class="section-label">NOTRE MANIFESTE</p>
+        <h2 id="manifest-title">BOUSCULER<br>LA FORMATION.</h2>
+        <h3>Pour de bonnes raisons.</h3>
+        <ul>
+          <li>Des apprenants qui ont vraiment envie d’apprendre.</li>
+          <li>Des formations connectées aux enjeux business.</li>
+          <li>Des compétences qui passent réellement de la formation au terrain.</li>
+        </ul>
+        <p class="manifest-pill">C’est pour ça que KISSARI existe.</p>
+      </div>
+      <div class="manifest-visual" aria-hidden="true"><img src="{{ "images/Femme jaune + logo.png" | relURL }}" alt=""></div>
+    </section>
+
+    <div class="separator" aria-hidden="true"><img src="{{ "images/separation-visuel-tight.png" | relURL }}" alt=""></div>
+
+    <section class="expertises" id="ce-qui-nous-anime" aria-labelledby="expertises-title">
+      <p class="section-label">CE QUI NOUS ANIME</p>
+      <div class="expertises-heading" id="expertises-title">
+        <h2>KISSARI<br>votre partenaire<br>transformation...</h2>
+        <h2>...ou 4 façons<br>de vous faire aimer<br>toutes les matières.</h2>
+      </div>
+      <div class="expertise-grid">
+        <article class="expertise-card blue first-card">
+          <img class="card-bg" src="{{ "images/Fond bleu.png" | relURL }}" alt="">
+          <img class="card-icon" src="{{ "images/Icone 1.png" | relURL }}" alt="">
+          <img class="card-person cloud" src="{{ "images/Feme nuage.png" | relURL }}" alt="">
+          <div class="card-copy">
+            <small>01</small>
+            <h3>IMAGINER</h3>
+            <h4>La formation<br>de demain</h4>
+            <p>Prospective RH, neurosciences, intelligence collective, créativité, veille et R&amp;D : nous croisons les regards pour imaginer des dispositifs qui couvrent des formations qui visent juste, engagent et produisent plus d’impact.</p>
+          </div>
+        </article>
+        <article class="expertise-card yellow">
+          <img class="card-bg" src="{{ "images/Fond jaune.png" | relURL }}" alt="">
+          <img class="card-icon" src="{{ "images/Icone 2.png" | relURL }}" alt="">
+          <img class="card-person wand" src="{{ "images/Femme baguette.png" | relURL }}" alt="">
+          <div class="card-copy">
+            <small>02</small>
+            <h3>TRANSFORMER</h3>
+            <h4>Faire passer<br>les acquis<br>sur le terrain</h4>
+            <p>Parce qu’une formation ne s’arrête pas à la dernière slide, nous reconnectons apprentissage et terrain en impliquant et en outillant managers et collaborateurs.</p></div>
+        </article>
+        <article class="expertise-card violet">
+          <img class="card-bg" src="{{ "images/Fond violet.png" | relURL }}" alt=""><img class="card-icon" src="{{ "images/Icone 3.png" | relURL }}" alt=""><img class="card-person man" src="{{ "images/Homme ballon.png" | relURL }}" alt="">
+          <div class="card-copy"><small>03</small><h3>CRÉER</h3><h4>Des expériences<br>qui donnent envie<br>d’apprendre</h4><p>Digital, présentiel, blended, storytelling, gamification, design et neuropédagogie : nous concevons des expériences apprenantes, belles et efficaces.</p></div>
+        </article>
+        <article class="expertise-card green">
+          <img class="card-bg" src="{{ "images/Fond vert.png" | relURL }}" alt=""><img class="card-icon" src="{{ "images/Icone 4.png" | relURL }}" alt=""><img class="card-person surprise" src="{{ "images/Femme cheveux-angle-droit.png" | relURL }}" alt="">
+          <div class="card-copy"><small>04</small><h3>FAIRE<br>RAYONNER</h3><h4>Donner plus<br>de valeur<br>à la formation</h4><p>Marketing de la formation, kits prêts à l’emploi, montée en autonomie des équipes et nouveaux modèles économiques : nous aidons la formation à gagner en impact... et en valeur.</p></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <img class="site-footer__logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI">
+      <p class="site-footer__tagline"><strong>Votre partenaire </strong><span class="site-footer__trans">trans</span><strong>formation</strong></p>
+      <nav class="site-footer__links" aria-label="Informations légales">
+        <a href="/mentions-legales/">Mentions légales</a>
+        <a href="/cgv/">CGV</a>
+        <a href="/contact/">Nous contacter</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

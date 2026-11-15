@@ -1,0 +1,8 @@
+{{- /* Prefer the article bundle; preserve existing static image paths. */ -}}
+{{- $url := .Params.image | default "" -}}
+{{- with .Resources.GetMatch $url -}}
+  {{- $url = .RelPermalink -}}
+{{- else -}}
+  {{- $url = $url | relURL -}}
+{{- end -}}
+{{- return $url -}}

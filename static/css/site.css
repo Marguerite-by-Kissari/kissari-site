@@ -1,0 +1,1887 @@
+/* =============================================================================
+   01. FONDATIONS — POLICES, COULEURS ET RÈGLES GLOBALES
+   ============================================================================= */
+
+@font-face {
+  font-family: Poppins;
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: Poppins;
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Poppins;
+  src: url("../fonts/Poppins-ExtraBold.ttf");
+  font-weight: 800;
+}
+:root {
+  --ink: #000001;
+  --paper: #f8f8f5;
+  --pink: #febab8;
+  --yellow: #fcec89;
+  --blue: #c9edf5;
+  --green: #dce597;
+  --violet: #d6c8e8;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Poppins, Arial, sans-serif;
+}
+
+/* ACCUEIL — cadre global centré : menu, sections, frises et pied de page
+   partagent la même limite de 1920px. En dessous, largeur naturellement fluide.
+   Le centrage est effectué une seule fois sur le body, jamais section par section. */
+.home-page {
+  max-width: 1920px;
+  margin-inline: auto;
+}
+
+/* =============================================================================
+   02. EN-TÊTE — LOGO, NAVIGATION ET LANGUE
+   ============================================================================= */
+
+.site-header {
+  height: 60px;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 5px 4%;
+  gap: 28px;
+}
+.header-logo {
+  width: 45px;
+  height: auto;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 31px;
+  margin: auto;
+  font-size: 12px;
+  font-weight: 700;
+}
+.site-nav a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+/* Recettage M05 : couleur seule ; le lien Presse conserve sa destination. */
+.site-nav .nav-link--muted {
+  color: #bebebe;
+}
+.site-nav a:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 6px;
+}
+.site-nav .active:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 3px;
+  background: var(--pink);
+}
+.language {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+.language strong {
+  color: var(--pink);
+}
+/* =============================================================================
+   03. HERO — TEXTE D'ACCROCHE ET COMPOSITION VISUELLE
+   ============================================================================= */
+
+.hero {
+  height: 723px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-copy {
+  position: absolute;
+  z-index: 20;
+  top: 56px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.kicker,
+.section-label {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 400;
+}
+.kicker {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: 51px;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -2px;
+  margin: 0;
+}
+.hero h1 span {
+  position: relative;
+  z-index: 1;
+}
+/* Même pinceau que l’accueil, avec son épaisseur réelle : la taille du titre
+   du blog ne doit pas épaissir le trait. Seule la longueur suit le mot. */
+.hero h1 span,
+.blog-hero h1 span {
+  --marker-reference-size: 51px;
+}
+@media (min-width: 1300px) {
+  .hero h1 span,
+  .blog-hero h1 span {
+    --marker-reference-size: 66px;
+  }
+}
+/*
+   Effet pinceau sous « bientôt. » : deux traces roses légèrement décalées.
+   Le tracé est volontairement sous les glyphes et remonte dans leur ligne de
+   base, comme sur la maquette plutôt qu'en simple soulignement typographique.
+*/
+.hero h1 span:before,
+.hero h1 span:after,
+.blog-hero h1 span:before,
+.blog-hero h1 span:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--pink);
+  pointer-events: none;
+}
+
+.hero h1 span:before,
+.blog-hero h1 span:before {
+  right: -14px;
+  bottom: calc(var(--marker-reference-size) * 0.29);
+  left: -6px;
+  height: calc(var(--marker-reference-size) * 0.16);
+  border-radius: 12px 18px 10px 15px;
+  opacity: 0.9;
+  transform: rotate(1deg);
+}
+
+.hero h1 span:after,
+.blog-hero h1 span:after {
+  right: -11px;
+  bottom: calc(var(--marker-reference-size) * 0.26);
+  left: -4px;
+  height: calc(var(--marker-reference-size) * 0.13);
+  border-radius: 14px 10px 16px 11px;
+  transform: rotate(-1.5deg);
+}
+.hero-lead {
+  font-size: 17px;
+  margin: 20px 0 0;
+}
+.hero-visual {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 258px;
+  width: 1024px;
+  height: 465px;
+  transform: translateX(-50%);
+}
+/*
+   Personnage rouge : élément indépendant du canevas central de 1024 px.
+   Jusqu'à 1920 px, son panneau est collé au bord gauche de la fenêtre ; au-delà,
+   il suit le bord gauche du stage 1920 px centré. bottom: 0 l'aligne précisément
+   sur la frise de séparation qui commence à la fin du hero.
+*/
+.hero-woman-panel {
+  position: absolute;
+  z-index: 4;
+  bottom: 0;
+  left: 0;
+  width: 249px;
+  height: 359px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.hero-watermark {
+  position: absolute;
+  z-index: 1;
+  left: -46px;
+  bottom: -86px;
+  width: 344px;
+  height: 300px;
+  overflow: hidden;
+}
+.hero-watermark img {
+  display: block;
+  width: 344px;
+  height: auto;
+}
+/*
+   La femme est calibrée sur la grille fournie à 1024 px : le sujet visible
+   mesure environ 245 px de haut. L'asset contient une grande réserve blanche
+   sous le sujet ; le panneau doit donc laisser l'image remonter au-dessus de
+   son cadre sans la rogner.
+*/
+.hero-woman-panel {
+  overflow: visible;
+}
+
+.hero-woman {
+  position: absolute;
+  z-index: 2;
+  top: -149px;
+  left: 0;
+  width: 230px;
+}
+.hero-media-badge {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  right: 124px;
+  bottom: 37px;
+  width: 318px;
+  height: 210px;
+}
+.hero-media-badge:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 4px;
+}
+.hero-video-status {
+  position: absolute;
+  z-index: 6;
+  top: 408px;
+  left: 306px;
+  width: 408px;
+  font-size: 13px;
+}
+.hero-circle {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  width: 210px;
+  height: 210px;
+}
+.hero-player {
+  position: absolute;
+  z-index: 2;
+  left: 115px;
+  bottom: 51px;
+  width: 108px;
+  height: auto;
+}
+/*
+   Panneau KISSARI central : origine x = 306 px sur la grille 1024 px.
+   Le visuel reste un asset fourni, sans reconstruction CSS.
+*/
+.hero-panel {
+  position: absolute;
+  z-index: 5;
+  width: 408px;
+  height: 408px;
+  object-fit: cover;
+  left: 306px;
+  top: 0;
+}
+
+/* Le hero grand écran est agrandi ; le panneau rouge suit la même échelle,
+   sans perdre son ancrage en bas à gauche. */
+@media (min-width: 1300px) {
+  .hero-woman-panel {
+    transform: scale(1.28);
+    transform-origin: left bottom;
+  }
+}
+
+/* À partir du stage maximum, le bord gauche ne suit plus le viewport : il
+   suit le stage 1920 px centré. */
+@media (min-width: 1920px) {
+  .hero-woman-panel {
+    left: calc(50% - 960px);
+  }
+}
+
+/* =============================================================================
+   04. SÉPARATEURS GRAPHIQUES
+   ============================================================================= */
+
+/*
+   La frise est recadrée sur ses pixels non transparents : aucun mat noir
+   n'est donc laissé sous le collage. Elle occupe toute la fenêtre jusqu'à
+   1920 px, puis conserve cette largeur de stage et reste centrée.
+*/
+.separator {
+  width: 100%;
+  background: var(--ink);
+}
+
+.separator img {
+  display: block;
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* =============================================================================
+   05. MANIFESTE — CONTENU ET ILLUSTRATION
+   ============================================================================= */
+
+/*
+   Le contenu suit le bord gauche du viewport jusqu'au stage de 1920 px :
+   40 px de retrait, puis le même repère dans le stage centré.
+*/
+.manifest {
+  height: 520px;
+  padding: 34px 40px;
+  background: var(--pink);
+  display: grid;
+  grid-template-columns: 52% 48%;
+  position: relative;
+  overflow: hidden;
+}
+
+.manifest-copy {
+  position: relative;
+  z-index: 5;
+  max-width: 640px;
+}
+.manifest .section-label {
+  margin: 0 0 20px;
+  font-size: 14px;
+}
+.manifest h2 {
+  font-size: 47px;
+  line-height: 0.94;
+  letter-spacing: -1.6px;
+  font-weight: 800;
+  margin: 0;
+}
+.manifest h3 {
+  font-size: 28px;
+  line-height: 1;
+  margin: 21px 0 37px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+/* Les propositions restent chacune sur une ligne dès que la largeur le permet. */
+.manifest ul {
+  list-style: none;
+  width: min(100%, 620px);
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.manifest li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.55);
+}
+.manifest-pill {
+  display: inline-block;
+  background: var(--yellow);
+  border-radius: 22px;
+  padding: 9px 14px;
+  margin: 20px 0 0;
+  font-size: 12px;
+  font-weight: 800;
+}
+/* L'illustration reste collée au bord droit du viewport jusqu'à 1920 px. */
+.manifest-visual {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 48%;
+  overflow: hidden;
+}
+.manifest-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+}
+/* =============================================================================
+   06. EXPERTISES — TITRES, GRILLE ET CARTES
+   -----------------------------------------------------------------------------
+   Empilement réellement défini dans CE fichier :
+   - .expertise-card : z-index 1  (contexte d'empilement de chaque carte)
+   - .first-card     : z-index 100 (carte 01, au-dessus des autres cartes)
+   - .card-bg        : z-index 0  (fond-image de chaque carte)
+   - .card-person    : z-index 10 (personnage)
+   - .card-icon      : z-index 20 (pictogramme)
+   - .card-copy      : z-index 30 (numéro et textes)
+   ============================================================================= */
+
+/* ----- 06.1 Conteneur et titres de la section ------------------------------ */
+/*
+   Expertises reprend le même repère que le Manifeste : 40 px depuis le bord
+   de la fenêtre jusqu'à 1920 px, puis 40 px depuis le stage centré.
+*/
+.expertises {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 52px 40px 72px;
+}
+
+.expertises > .section-label {
+  font-size: 14px;
+  margin: 0 0 34px;
+}
+
+/*
+   Le bloc de titres occupe 70 % du viewport jusqu'à 1920 px (soit 1344 px),
+   puis garde ce plafond. Il est centré indépendamment du libellé de section.
+*/
+.expertises-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.44fr) minmax(0, 0.56fr);
+  gap: 40px;
+  width: min(70vw, 1344px);
+  margin: 0 auto 52px;
+}
+.expertises-heading h2 {
+  font-size: 43px;
+  line-height: 0.92;
+  letter-spacing: -1.8px;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* ----- 06.2 Grille 2 × 2 et cadre extérieur ------------------------------- */
+/* Les cartes utilisent le même gabarit de 70 % et sont centrées. */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: min(70vw, 1344px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 46px;
+}
+/*
+   Chaque carte devient son propre contexte d'empilement : les calques internes
+   (fond 0, personnage 10, pictogramme 20, texte 30) ne peuvent ainsi jamais
+   passer devant une autre carte. La carte 01 peut alors réellement prendre
+   priorité avec son z-index 99.
+*/
+.expertise-card {
+  height: 416px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* ----- 06.3 Calques internes communs à chaque carte ------------------------ */
+.card-bg {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  inset: 0;
+}
+.card-icon {
+  position: absolute;
+  z-index: 20;
+  top: 24px;
+  left: 51px;
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+.card-person {
+  position: absolute;
+  z-index: 10;
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+/* ----- 06.4 Positionnement propre à chaque personnage ---------------------- */
+.cloud {
+  height: 79%;
+  right: -50px;
+  bottom: -1px;
+}
+.wand {
+  height: 72%;
+  right: -1px;
+  bottom: 0;
+}
+.man {
+  height: 70%;
+  right: 3px;
+  bottom: 0;
+}
+.surprise {
+  height: 68%;
+  right: -2px;
+  bottom: 0;
+}
+
+/* ----- 06.5 Contenu textuel au premier plan -------------------------------- */
+.card-copy {
+  position: absolute;
+  z-index: 30;
+  top: 26px;
+  left: 29px;
+  max-width: 55%;
+}
+.card-copy small {
+  font-size: 11px;
+}
+.card-copy h3 {
+  font-size: 39px;
+  line-height: 0.9;
+  letter-spacing: -1px;
+  margin: 35px 0 7px;
+  font-weight: 800;
+}
+.card-copy h4 {
+  font-size: 22px;
+  line-height: 1.02;
+  letter-spacing: -1px;
+  margin: 0;
+  font-weight: 800;
+}
+.card-copy p {
+  font-size: 11px;
+  line-height: 1.23;
+  margin: 21px 0 0;
+  max-width: 185px;
+}
+
+/* ----- 06.6 Ajustements de largeur et de titres par couleur ---------------- */
+.yellow .card-copy,
+.green .card-copy {
+  max-width: 62%;
+}
+.yellow .card-copy h3 {
+  font-size: 37px;
+}
+.green .card-copy h3 {
+  font-size: 36px;
+}
+.green .card-copy p {
+  max-width: 180px;
+}
+
+.first-card {
+  z-index: 100;
+  overflow: visible;
+}
+.first-card .cloud {
+  position: absolute;
+  z-index: 50;
+
+  height: 100%;
+  width: auto;
+
+  right: -40px;
+  bottom: -68px;
+
+  object-fit: contain;
+  object-position: right bottom;
+}
+.first-card .card-copy {
+  z-index: 60;
+}
+
+/*
+   À petite largeur, la planche utilise toute la largeur intérieure (40 px de
+   retrait de chaque côté) : le gabarit 70 % est réservé aux largeurs de
+   composition intermédiaires et desktop. Les titres de carte sont réduits pour
+   ne jamais empiéter sur la carte voisine.
+*/
+@media (max-width: 799px) {
+  .expertises > .section-label {
+    margin-bottom: 20px;
+  }
+
+  .expertises-heading {
+    grid-template-columns: minmax(0, 0.47fr) minmax(0, 0.53fr);
+    gap: 26px;
+    width: calc(100% + 26px);
+    margin: 0 -13px 30px;
+  }
+
+  .expertises-heading h2 {
+    font-size: clamp(25px, 4.6vw, 28px);
+    letter-spacing: -1px;
+  }
+
+  .expertise-grid {
+    width: 100%;
+    border-radius: 28px;
+  }
+
+  .card-copy h3,
+  .yellow .card-copy h3,
+  .green .card-copy h3 {
+    font-size: clamp(27px, 5.1vw, 30px);
+    margin-top: 15px;
+  }
+
+  .card-copy h4 {
+    font-size: 16px;
+  }
+
+  .card-copy p {
+    font-size: 9px;
+  }
+}
+
+/*
+   Dès 800 px, les cartes gagnent 10 points de largeur (80 % du viewport,
+   plafond 1536 px). La colonne de droite du titre est calculée pour démarrer
+   exactement sur la séparation entre les cartes 01 et 02 — donc au bord de la
+   carte jaune.
+*/
+@media (min-width: 800px) {
+  .expertise-grid {
+    width: min(80vw, 1536px);
+  }
+
+  .expertises-heading {
+    grid-template-columns: calc(35vw - 40px) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1920px) {
+  .expertises-heading {
+    grid-template-columns: 632px minmax(0, 1fr);
+  }
+}
+
+/* =============================================================================
+   07. GRAND ÉCRAN — AJUSTEMENTS À PARTIR DE 1300 px
+   ============================================================================= */
+
+@media (min-width: 1300px) {
+  .site-header {
+    height: 82px;
+  }
+  .header-logo {
+    width: 56px;
+  }
+  .site-nav {
+    font-size: 15px;
+    gap: 43px;
+  }
+  .language {
+    font-size: 15px;
+  }
+  .hero {
+    height: 930px;
+  }
+  .hero-copy {
+    top: 70px;
+  }
+  .hero h1 {
+    font-size: 66px;
+  }
+  .hero-visual {
+    transform: translateX(-50%) scale(1.28);
+    transform-origin: top center;
+    top: 330px;
+  }
+  .manifest {
+    height: 670px;
+    padding: 50px 40px;
+  }
+  .manifest h2 {
+    font-size: 60px;
+  }
+  .manifest h3 {
+    font-size: 34px;
+  }
+  .manifest .section-label {
+    font-size: 17px;
+  }
+  .manifest ul {
+    font-size: 16px;
+  }
+  .manifest-pill {
+    font-size: 14px;
+  }
+  .expertises {
+    padding: 70px 40px 90px;
+  }
+  .expertises > .section-label {
+    font-size: 17px;
+  }
+  /* Conserve les trois lignes prévues par la maquette dans le bloc à 70 %. */
+  .expertises-heading h2 {
+    font-size: clamp(47px, 3.6vw, 54px);
+  }
+  .expertise-card {
+    height: 520px;
+  }
+  .card-copy {
+    top: 34px;
+    left: 36px;
+  }
+  .card-copy h3 {
+    font-size: 49px;
+  }
+  .card-copy h4 {
+    font-size: 27px;
+  }
+  .card-copy p {
+    font-size: 13px;
+    max-width: 225px;
+  }
+  .card-icon {
+    top: 31px;
+    left: 65px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Grand écran : le body est déjà centré et plafonné à 1920px.
+   Aucun retrait calculé depuis le viewport : cela doublerait les marges. */
+@media (min-width: 1920px) {
+  .manifest,
+  .expertises {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .manifest-visual {
+    right: 0;
+    left: calc(50% - 38.4px);
+  }
+}
+
+/* =============================================================================
+   08. PIED DE PAGE — SIGNATURE ET LIENS
+   ============================================================================= */
+
+.site-footer {
+  background: var(--ink);
+  color: #fff;
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  min-height: 114px;
+  padding: 18px 4%;
+}
+
+.site-footer__logo {
+  display: block;
+  flex: 0 0 auto;
+  width: 74px;
+  height: auto;
+}
+
+.site-footer__tagline {
+  margin: 0 0 0 38px;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.7px;
+}
+
+.site-footer__tagline strong {
+  font-weight: 700;
+}
+.site-footer__trans {
+  font-weight: 400;
+  font-synthesis: none;
+}
+
+.site-footer__links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-left: auto;
+}
+
+.site-footer__links a {
+  color: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-footer__links a:hover,
+.site-footer__links a:focus-visible {
+  color: var(--pink);
+}
+
+.site-footer__links a:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 6px;
+}
+
+@media (max-width: 800px) {
+  .site-footer__inner {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .site-footer__tagline {
+    margin-left: 0;
+  }
+
+  .site-footer__links {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+}
+
+/* =============================================================================
+   09. BLOG — INDEX DES ARTICLES
+   ============================================================================= */
+/* BLOG — canevas centré, plafonné à 1920px comme le site principal.
+   Les mesures du visuel se basent sur la largeur réelle de ce conteneur
+   (cqw), pas sur le viewport : au-delà de 1920px, la frise et ses raccords
+   cessent de grandir ensemble. Sous cette limite, la page reste fluide. */
+.blog-page {
+  max-width: 1920px;
+  margin-inline: auto;
+  container-type: inline-size;
+}
+/* BLOG — délimitation douce du canevas sur écran large.
+   Deux ombres latérales diffuses dessinent les bords extérieurs sans appliquer
+   de filtre au texte ni aux images. Aucun espace ajouté au layout.
+   L'effet disparaît quand la page occupe toute la largeur de la fenêtre. */
+/* Même finition latérale sur l'accueil et le blog. */
+@media (min-width: 1921px) {
+  .home-page,
+  .blog-page {
+    box-shadow:
+      -24px 0 40px -24px rgba(20, 20, 20, 0.32),
+      24px 0 40px -24px rgba(20, 20, 20, 0.32);
+  }
+}
+.blog-page .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.blog-shell {
+  width: calc(100% - 148px);
+  max-width: 1772px;
+  margin: 0 auto;
+}
+.blog-hero {
+  /* Réserve sous la frise retirée de la hauteur du hero, pas seulement masquée.
+     La section filtres suit ainsi directement le bord inférieur du bandeau. */
+  --blog-band-trim: calc(min(61cqw, 1160px) * 0.0963365 - 3.324169cqw + 1px);
+  position: relative;
+  min-height: calc(635px - var(--blog-band-trim));
+  /* Les doigts peuvent passer devant la frise sans être coupés par le hero.
+     Le débordement horizontal reste coupé, sans ajouter de hauteur au flux. */
+  overflow: visible;
+  clip-path: inset(0 0 -150px 0);
+  background: var(--paper);
+}
+.blog-hero__inner {
+  position: relative;
+  min-height: calc(635px - var(--blog-band-trim));
+  display: flex;
+  align-items: center;
+}
+.blog-hero__copy {
+  position: relative;
+  z-index: 2;
+  width: 43%;
+  max-width: 760px;
+  padding-bottom: 50px;
+}
+.blog-eyebrow {
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.blog-hero h1 {
+  margin: 0;
+  font-size: clamp(54px, 4.58vw, 88px);
+  font-weight: 800;
+  line-height: 0.97;
+  letter-spacing: -4px;
+}
+.blog-hero h1 span {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+.blog-hero__copy > p:last-child {
+  max-width: 690px;
+  margin: 35px 0 0;
+  font-size: 22px;
+  line-height: 1.25;
+}
+/* BLOG — POSITIONNEMENT DU VISAGE ET DE LA MAIN
+   Deux PNG indépendants : visage.png et main.png, issus du fichier original.
+   Le conteneur couvre le hero ; les deux éléments prennent comme référence
+   le haut de la frise. Réglages détaillés dans COMPOSITION ALIGNÉE ci-dessous.
+   right croissant déplace vers la gauche ; bottom croissant déplace vers le haut.
+   Le zoom agit sur le viewport CSS et active éventuellement le cadrage mobile. */
+.blog-hero__visual {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+  /* Transparent : le fond opaque masquait le texte situé sous ce calque. */
+  background: transparent;
+}
+/* BLOG — BANDEAU : largeur complète, hauteur proportionnelle au PNG.
+   Le bord supérieur sert de référence au visage et à la prise de la main.
+   Le bord inférieur termine le hero. Aucun étirement ni recadrage. */
+.blog-hero__band {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  /*background: #000;*/
+  transform: none;
+}
+
+/* BLOG — COMPOSITION ALIGNÉE : DEUX IMAGES INDÉPENDANTES
+   Source conservée : homme_lunettes.png. Découpes transparentes sans resampling.
+   La frise conserve sa largeur complète et son ratio naturel 4001 / 133.
+   Son bord supérieur est à --band-height du bas du hero.
+   FACE : bas du PNG sur cette ligne, chevauchement de 2px pour absorber
+   l'antialiasing de sa découpe. --face-overlap augmente => visage plus bas.
+   MAIN : ligne de prise à 281px du haut du PNG (488px de haut), donc 207px
+   sous cette ligne. Les doigts passent devant le bandeau (z-index: 3).
+   --hand-overlap ajoute un réglage indépendant : positif => main plus basse.
+   Les ratios de largeur conservent l'échelle d'origine des deux découpes.
+   Les décalages horizontaux reproduisent la composition initiale, sans lier
+   les positions verticales : chaque image peut maintenant être ajustée seule. */
+.blog-hero__visual {
+  --scene-width: min(61cqw, 1160px);
+  --scene-right: 8px;
+  --band-height: calc(100cqw * 133 / 4001);
+  --face-overlap: 2px;
+  --hand-overlap: 0px;
+}
+.blog-hero__face,
+.blog-hero__hand {
+  position: absolute;
+  height: auto;
+  max-width: none;
+}
+.blog-hero__face {
+  z-index: 2;
+  width: calc(var(--scene-width) * 1282 / 2211);
+  right: calc(var(--scene-right) + var(--scene-width) * 12 / 2211);
+  bottom: calc(var(--band-height) - var(--face-overlap));
+}
+.blog-hero__hand {
+  z-index: 3;
+  width: calc(var(--scene-width) * 866 / 2211);
+  right: calc(var(--scene-right) + var(--scene-width) * 1326 / 2211);
+  bottom: calc(
+    var(--band-height) - var(--scene-width) * 207 / 2211 - var(--hand-overlap)
+  );
+}
+@media (max-width: 700px) {
+  .blog-hero__visual {
+    /* Cadrage mobile : conserve le visage entier au lieu de le couper à droite. */
+    --scene-width: 95vw;
+    --scene-right: 8px;
+  }
+}
+
+.blog-filters {
+  min-height: 202px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background: #fff;
+}
+.blog-filters > .blog-shell {
+  display: flex;
+  align-items: center;
+}
+.blog-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.blog-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 70px;
+  padding: 12px 27px;
+  border: 2px solid var(--ink);
+  border-radius: 99px;
+  background: #fff;
+  color: var(--ink);
+  font:
+    700 22px Poppins,
+    sans-serif;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s;
+}
+.blog-filter[data-filter="actus"] {
+  width: 189px;
+}
+.blog-filter[data-filter="jusdecerveau"] {
+  width: 270px;
+}
+.blog-filter[data-filter="interviews"] {
+  width: 230px;
+}
+.blog-filter[data-filter="outils"] {
+  width: 189px;
+}
+.blog-filter i {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.blog-filter[data-filter="actus"] i {
+  background: #ffbab9;
+}
+.blog-filter[data-filter="jusdecerveau"] i {
+  background: #c3ebf3;
+}
+.blog-filter[data-filter="interviews"] i {
+  background: #d8de92;
+}
+.blog-filter[data-filter="outils"] i {
+  background: #fbec88;
+}
+.blog-filter:hover,
+.blog-filter.is-active {
+  border-color: #fff;
+  background: #000;
+  color: #fff;
+}
+.blog-filter:focus-visible,
+.blog-row__arrows button:focus-visible,
+.article-card a:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 4px;
+}
+
+.blog-listing {
+  padding: 68px 0 135px;
+  background: var(--paper);
+}
+.blog-listing > .blog-shell > h2 {
+  margin: 0;
+  font-size: clamp(56px, 3.75vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -3px;
+}
+.blog-row {
+  margin-top: 48px;
+  scroll-margin-top: 110px;
+}
+.blog-row[hidden] {
+  display: none;
+}
+.blog-row__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.blog-row__head h2 {
+  /* Les longs noms de catégorie restent dans le cadre sur mobile et au zoom. */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  margin: 0;
+  font-size: clamp(56px, 3.75vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -3px;
+}
+.blog-row__arrows {
+  display: flex;
+  flex-shrink: 0;
+  gap: 13px;
+}
+.blog-row__arrows button {
+  width: 54px;
+  height: 54px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  font:
+    800 27px/1 Poppins,
+    sans-serif;
+  cursor: pointer;
+}
+.blog-row__arrows button:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.blog-scroll {
+  overflow: hidden;
+}
+/* Rails fluides : trois cartes complètes sur ordinateur, deux sur tablette.
+   Au-delà, flèches, défilement et clavier restent disponibles.
+   Hauteur naturelle commune à la rangée, sans tronquer les textes. */
+.blog-track {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink) transparent;
+}
+.blog-track:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: -3px;
+}
+.blog-row__arrows button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.article-card__pending {
+  margin-top: auto;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+@media (prefers-reduced-motion: reduce) {
+  .blog-track {
+    scroll-behavior: auto;
+  }
+}
+.article-card {
+  flex: 0 0 calc((100% - 56px) / 3);
+  width: calc((100% - 56px) / 3);
+  height: auto;
+  min-height: 0;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px 24px 40px 40px;
+  background: #fff;
+}
+.article-card__image {
+  width: 100%;
+  height: clamp(180px, 15vw, 250px);
+  flex: 0 0 clamp(180px, 15vw, 250px);
+  overflow: hidden;
+  margin: 0;
+  background: var(--blue);
+}
+.article-card--yellow .article-card__image {
+  background: var(--yellow);
+}
+.article-card--pink .article-card__image {
+  background: var(--pink);
+}
+.article-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.article-card__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.article-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #000;
+  font: 700 16px/1.2 Poppins, sans-serif;
+}
+.article-card__meta p {
+  margin: 0;
+}
+.article-card__meta time {
+  white-space: nowrap;
+}
+.article-card h3 {
+  margin: 24px 0 0;
+  color: #000;
+  font: 700 32px/1.1 Poppins, sans-serif;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+}
+.article-card__summary {
+  margin: 20px 0 24px;
+  color: #000;
+  font: 400 18px/1.35 Poppins, sans-serif;
+  overflow-wrap: anywhere;
+}
+.article-card__body > a {
+  margin-top: auto;
+  color: #000;
+  font: 400 20px/1.2 Poppins, sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.article-card__body > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.article-card__body > a span {
+  margin-left: 6px;
+  font-size: 1.3em;
+}
+.blog-empty {
+  margin: 0;
+  font-size: 20px;
+}
+
+@media (max-width: 1100px) {
+  .blog-shell {
+    width: calc(100% - 80px);
+  }
+  .blog-hero__copy {
+    width: 55%;
+  }
+  .article-card {
+    flex-basis: calc((100% - 28px) / 2);
+    width: calc((100% - 28px) / 2);
+  }
+}
+@media (max-width: 700px) {
+  /* M07 : conserver le carré, mais rendre toutes les commandes vidéo accessibles. */
+  .hero-panel {
+    left: 50%;
+    width: min(408px, calc(100vw - 32px));
+    height: auto;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    object-fit: contain;
+  }
+  .site-header {
+    height: auto;
+    min-height: 60px;
+    gap: 12px;
+    padding: 7px 16px;
+  }
+  .header-logo {
+    width: 40px;
+  }
+  .site-nav {
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 7px 15px;
+    margin: 0;
+    font-size: 10px;
+    line-height: 1.1;
+  }
+  .site-nav .active:after {
+    bottom: -5px;
+    height: 2px;
+  }
+  .language {
+    display: none;
+  }
+  .blog-shell {
+    width: calc(100% - 32px);
+  }
+  .blog-hero,
+  .blog-hero__inner {
+    --blog-band-trim: calc(142vw * 0.0963365 - 3.324169vw + 1px);
+    min-height: calc(575px - var(--blog-band-trim));
+  }
+  .blog-hero__copy {
+    width: 100%;
+    align-self: flex-start;
+    padding-top: 62px;
+  }
+  .blog-eyebrow {
+    font-size: 14px;
+  }
+  .blog-hero h1 {
+    font-size: 52px;
+    letter-spacing: -3px;
+  }
+  .blog-hero__copy > p:last-child {
+    max-width: 300px;
+    font-size: 17px;
+  }
+
+  .blog-filters {
+    min-height: 0;
+    padding: 32px 0;
+  }
+  .blog-filter-list {
+    gap: 12px;
+  }
+  .blog-filter {
+    width: auto !important;
+    min-height: 52px;
+    padding: 9px 17px;
+    font-size: 16px;
+  }
+  .blog-filter i {
+    width: 13px;
+    height: 13px;
+  }
+  .blog-listing {
+    padding-top: 46px;
+  }
+  .blog-listing > .blog-shell > h2,
+  .blog-row__head h2 {
+    font-size: 49px;
+    letter-spacing: -2px;
+  }
+  .blog-row {
+    margin-top: 40px;
+  }
+  .blog-row__head {
+    margin-bottom: 30px;
+  }
+  .blog-row__arrows button {
+    width: 42px;
+    height: 42px;
+    font-size: 21px;
+  }
+  .article-card {
+    flex-basis: 88%;
+    width: auto;
+    height: auto;
+    min-height: 0;
+  }
+  .article-card__image {
+    width: 100%;
+    height: 190px;
+    flex-basis: 190px;
+  }
+  .article-card > div {
+    padding: 27px;
+  }
+  .article-card__meta {
+    font-size: 14px;
+  }
+  .article-card h3 {
+    margin-top: 25px;
+    font-size: 29px;
+  }
+  .article-card__summary,
+  .article-card a {
+    font-size: 16px;
+  }
+}
+
+.article-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.article-card h3 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.article-shell {
+  width: min(1120px, calc(100% - 80px));
+  margin: 0 auto;
+  padding: 90px 0 50px;
+}
+.article-back {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.article-back:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.article-category {
+  margin: 75px 0 24px;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.article-shell h1 {
+  max-width: 1000px;
+  margin: 0;
+  font-size: clamp(54px, 7vw, 106px);
+  line-height: 0.98;
+  letter-spacing: -4px;
+}
+.article-lead {
+  max-width: none;
+  margin: 42px 0 26px;
+  font-size: clamp(22px, 2.1vw, 32px);
+  line-height: 1.25;
+  font-weight: 700;
+}
+.article-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 54px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.article-hero-image {
+  display: block;
+  width: 100%;
+  max-height: 580px;
+  object-fit: contain;
+  object-position: center;
+  background: var(--blue);
+  border-radius: 28px 28px 48px 48px;
+}
+.article-content {
+  max-width: none;
+  margin: 35px 0 0;
+  font-size: 22px;
+  line-height: 1.65;
+}
+.article-content h2 {
+  margin: 74px 0 44px;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 700;
+}
+.article-content > h2:first-child {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+.article-content h3 {
+  margin: 52px 0 18px;
+  font-size: clamp(27px, 3vw, 40px);
+  line-height: 1.08;
+}
+.article-content > p:first-child {
+  margin-bottom: 40px;
+  color: #000;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+.article-content p,
+.article-content ul,
+.article-content ol {
+  margin: 0 0 30px;
+}
+.article-content ul > li::marker {
+  color: #c3ebf3;
+  font-size: 1.5em;
+}
+.article-content li + li {
+  margin-top: 16px;
+}
+.article-content blockquote,
+.article-content .article-callout {
+  position: relative;
+  margin: 30px 0 58px;
+  padding: 58px 38px 28px;
+  background: var(--pink);
+  border-radius: 28px;
+  font-size: clamp(27px, 3vw, 44px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+.article-content blockquote p {
+  margin: 0;
+  text-align: left;
+}
+/* Citation rose : vrai visuel fourni, puis texte dans le flux normal.
+   1.75cap = 1,75 fois la hauteur d’une capitale de la police courante. */
+.article-content blockquote::before,
+.article-content .article-callout--pink::before {
+  content: "";
+  display: block;
+  position: static;
+  width: auto;
+  height: 1.25em;
+  height: 1.75cap;
+  aspect-ratio: 462 / 366;
+  margin: 0 0 0.55em;
+  background: url("../images/blog/guillemets.png") left center / contain no-repeat;
+  transform: none;
+}
+.article-content blockquote em {
+  display: block;
+  margin-top: 22px;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.article-content .article-callout--black {
+  background: #000;
+  margin-bottom: 29px;
+  padding-top: 48px;
+}
+.article-content .article-callout--black::before {
+  display: none;
+}
+.article-content .article-callout--black .article-callout__title {
+  margin: 0 0 30px;
+  color: #fbec88;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 700;
+}
+.article-content .article-callout--black .article-callout__body {
+  margin: 0 0 30px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.article-content .article-callout--yellow {
+  background: var(--yellow);
+}
+.article-content .article-callout--yellow::before {
+  display: none;
+}
+.article-content .article-callout--yellow .article-callout__title {
+  margin: 0 0 44px;
+  color: var(--ink);
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 700;
+}
+.article-content .article-callout--yellow ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: yellow-step;
+}
+.article-content .article-callout--yellow li {
+  position: relative;
+  display: block;
+  margin: 0 0 24px;
+  padding-left: 62px;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+.article-content .article-callout--yellow li:last-child {
+  margin-bottom: 0;
+}
+.article-content .article-callout--yellow li::before {
+  counter-increment: yellow-step;
+  content: counter(yellow-step, decimal-leading-zero);
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+}
+.article-content a {
+  color: inherit;
+  font-weight: 700;
+  text-underline-offset: 5px;
+}
+.article-next-banner {
+  width: 100%;
+  max-width: 1920px;
+  min-height: 500px;
+  margin: 0 auto;
+  padding: 74px;
+  background: var(--blue);
+  color: var(--ink);
+}
+.article-next-banner__label {
+  margin: 0 0 44px;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.article-next-banner__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 48px;
+  padding-left: 74px;
+  color: inherit;
+  text-decoration: none;
+}
+.article-next-banner__link--static {
+  display: block;
+}
+.article-next-banner__title {
+  margin: 0;
+  max-width: 1100px;
+  font-size: 88px;
+  line-height: .98;
+  letter-spacing: -3px;
+  font-weight: 700;
+}
+.article-next-banner__arrow {
+  padding-right: 0;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 700;
+}
+.article-next-banner__link:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 6px;
+}
+.article-next-banner__link:hover .article-next-banner__title {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
+/* HERO ARTICLE — même langage visuel que l'accueil */
+.article-hero {
+  --article-category-bg: #c3ebf3;
+  background: var(--article-category-bg);
+  overflow: hidden;
+}
+.article-hero[data-category="actus"] { --article-category-bg: #ffbab9; }
+.article-hero[data-category="jusdecerveau"],
+.article-hero[data-category="jus-de-cerveau"] { --article-category-bg: #c3ebf3; }
+.article-hero[data-category="interviews"] { --article-category-bg: #d8de92; }
+.article-hero[data-category="outils"] { --article-category-bg: #fbec88; }
+.article-page .separator {
+  background: transparent;
+}
+.article-hero__inner {
+  width: 100%;
+  max-width: 1920px;
+  min-height: 560px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr);
+  column-gap: 70px;
+  align-items: stretch;
+}
+.article-hero__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 0 54px;
+}
+.article-hero .article-back {
+  align-self: flex-start;
+  margin-bottom: 38px;
+  color: var(--ink);
+  font-size: 14px;
+}
+.article-hero .article-category {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.article-hero .article-category::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border-radius: 50%;
+  background: var(--article-category-bg);
+  border: 1px solid rgba(0,0,0,.12);
+}
+.article-hero h1 {
+  max-width: none;
+  margin: 0;
+  font-size: 88px;
+  line-height: .98;
+  letter-spacing: -4px;
+  font-weight: 700;
+}
+.article-hero .article-lead {
+  max-width: none;
+  margin: 28px 0 0;
+  font-size: 20px;
+  line-height: 1.45;
+  font-weight: 400;
+}
+.article-hero__visual {
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.article-hero__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media (max-width: 700px) {
+  .article-shell {
+    width: calc(100% - 32px);
+    padding: 55px 0 40px;
+  }
+  .article-category {
+    margin-top: 52px;
+    font-size: 15px;
+  }
+  .article-shell h1 {
+    letter-spacing: -2px;
+  }
+  .article-lead {
+    margin-top: 28px;
+    font-size: 21px;
+  }
+  .article-byline {
+    font-size: 14px;
+  }
+  .article-hero-image {
+    border-radius: 20px 20px 32px 32px;
+  }
+  .article-content {
+    margin-top: 52px;
+    font-size: 18px;
+  }
+  .article-content blockquote,
+  .article-content .article-callout {
+    margin: 40px 0;
+    padding: 48px 10px 22px;
+  }
+  .article-next-banner {
+    min-height: 360px;
+    padding: 40px 32px;
+  }
+  .article-next-banner__label {
+    margin-bottom: 28px;
+    font-size: 18px;
+  }
+  .article-next-banner__link {
+    gap: 24px;
+    padding-left: 32px;
+  }
+  .article-next-banner__title {
+    font-size: clamp(44px, 12vw, 64px);
+    letter-spacing: -2px;
+  }
+  .article-next-banner__arrow {
+    font-size: 24px;
+  }
+  .article-hero__inner {
+    width: calc(100% - 32px);
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-hero__copy {
+    padding: 32px 0 24px;
+  }
+  .article-hero .article-back {
+    margin-bottom: 28px;
+  }
+  .article-hero .article-category {
+    margin-bottom: 18px;
+    font-size: 18px;
+  }
+  .article-hero h1 {
+    font-size: clamp(44px, 12vw, 64px);
+    letter-spacing: -2px;
+  }
+  .article-hero .article-lead {
+    margin-top: 22px;
+    font-size: 18px;
+  }
+  .article-hero__visual {
+    min-height: 330px;
+    height: 330px;
+  }
+  .article-hero__visual img {
+    width: 100%;
+  }
+}
+
+.article-content .footnotes > ol {
+  list-style: none;
+  padding-left: 0;
+}
+.article-content .footnotes > ol > li {
+  position: relative;
+  padding-left: 1.35em;
+}
+/* Recettage M17–M20 : vrais numéros ; +4pt sur la base numérique en exposant. */
+.article-content sup[id^="fnref"] {
+  font-size: calc(0.75em + 4pt);
+  line-height: 0;
+  scroll-margin-top: 110px;
+}
+.article-content .footnote-number {
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  font-size: calc(0.75em + 4pt);
+}
+.article-content a.footnote-ref {
+  font-size: inherit;
+  text-decoration: none;
+}
+.article-content .footnotes li[id] {
+  scroll-margin-top: 110px;
+}
+.article-content .footnote-backref {
+  display: inline-block;
+  padding: 2px 5px;
+}
+.article-content a.footnote-ref:focus-visible,
+.article-content .footnote-backref:focus-visible,
+.article-content sup[id^="fnref"]:focus,
+.article-content .footnotes li[id]:focus {
+  outline: 2px solid var(--pink);
+  outline-offset: 4px;
+}

@@ -1,48 +1,13 @@
-baseURL = 'https://kissari.com/'
-languageCode = 'fr-be'
-defaultContentLanguage = 'fr'
-title = 'KISSARI'
-enableRobotsTXT = true
-disableKinds = ['taxonomy', 'term']
+baseURL = "http://localhost:1314/"
+languageCode = "fr-fr"
+title = "KISSARI — proposition locale"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
+
+[outputFormats.EditorialCatalog]
+  mediaType = "application/json"
+  baseName = "catalogue-editorial"
+  isPlainText = true
+  notAlternative = true
 
 [params]
-  description = 'KISSARI — Le nouveau site arrive bientôt.'
-  author = 'KISSARI'
-
-[languages]
-  [languages.fr]
-    languageName = 'Français'
-    weight = 1
-    title = 'KISSARI'
-    contentDir = 'content'
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
-[menus]
-  [[menus.main]]
-    name = 'KISSARI'
-    pageRef = '/'
-    weight = 10
-  [[menus.main]]
-    name = 'Nos offres'
-    pageRef = '/offres'
-    weight = 20
-  [[menus.main]]
-    name = 'Nos projets'
-    pageRef = '/projets'
-    weight = 30
-  [[menus.main]]
-    name = 'Le blog'
-    pageRef = '/blog'
-    weight = 40
-  [[menus.main]]
-    name = 'Contact'
-    pageRef = '/contact'
-    weight = 50
-  [[menus.main]]
-    name = 'Presse'
-    pageRef = '/presse'
-    weight = 60
+  environment = "local-prototype"

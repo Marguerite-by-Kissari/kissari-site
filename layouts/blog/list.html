@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} — KISSARI</title>
+  <meta name="description" content="{{ .Description }}">
+  <link rel="icon" href="{{ "favicons/favicon.ico" | relURL }}?v=20261015-3" sizes="any">
+  <link rel="icon" type="image/png" href="{{ "favicons/favicon-32.png" | relURL }}?v=20261015-3" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ "favicons/favicon-512.png" | relURL }}?v=20261015-3" sizes="512x512">
+  <link rel="apple-touch-icon" href="{{ "favicons/apple-touch-icon.png" | relURL }}?v=20261015-3" sizes="180x180">
+  <meta name="theme-color" content="#141414">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
+  <script src="{{ "js/blog.js" | relURL }}" defer></script>
+</head>
+<body class="blog-page">
+  <header class="site-header" aria-label="KISSARI">
+    <a href="{{ "/" | relURL }}" aria-label="KISSARI — accueil"><img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"></a>
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a class="active" href="{{ "/blog/" | relURL }}" aria-current="page">Le blog par KA</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
+    </nav>
+    <p class="language"><strong>FR</strong> / EN</p>
+  </header>
+
+  {{ $all := where site.RegularPages "Section" "blog" }}
+  {{ $all = $all.ByPublishDate.Reverse }}
+  {{ $categories := site.Data.blog_preview.categories }}
+  {{ $blogSection := .CurrentSection }}
+  {{ $editorial := site.Data.blog_editorial }}
+  {{ $selected := slice }}
+  {{ range $editorial.article_paths }}
+    {{ $matches := where $all "RelPermalink" . }}
+    {{ if gt (len $matches) 0 }}
+      {{ $page := index $matches 0 }}
+      {{ if and (not $page.Draft) (not ($page.PublishDate.After now)) }}{{ $selected = $selected | append $page }}{{ end }}
+    {{ else }}{{ warnf "Rubrique éditoriale : adresse indisponible %s" . }}{{ end }}
+  {{ end }}
+
+  <main>
+    <section class="blog-hero" aria-labelledby="blog-title">
+      <div class="blog-shell blog-hero__inner">
+        <div class="blog-hero__copy">
+          <h1 id="blog-title">Le blog qui remue les <span>méninges</span></h1>
+          <p>Articles de fond, outils testés, paroles d'experts et actualités : tout ce qui nous anime sans langue de bois.</p>
+        </div>
+      </div>
+      <div class="blog-hero__visual" aria-hidden="true">
+        <img class="blog-hero__face" src="{{ "images/blog/visage.png" | relURL }}" width="1282" height="1144" alt="">
+        <img class="blog-hero__hand" src="{{ "images/blog/main.png" | relURL }}" width="866" height="488" alt="">
+        <img class="blog-hero__band" src="{{ "images/blog/separation-visuel.png" | relURL }}" alt="">
+      </div>
+    </section>
+
+    <section class="blog-filters" aria-label="Filtrer les articles">
+      <div class="blog-shell">
+        <div class="blog-filter-list" role="group" aria-label="Catégories d'articles">
+          <button type="button" class="blog-filter is-active" data-filter="all" aria-label="Voir tous les articles" aria-pressed="true">Tout voir</button>
+          {{ range $category := $categories }}
+            <button type="button" class="blog-filter {{ $category.color }}" data-filter="{{ $category.id }}" aria-label="Catégorie #{{ $category.label }}" aria-pressed="false"><i aria-hidden="true"></i>#{{ $category.label }}</button>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-listing" aria-labelledby="articles-title">
+      <div class="blog-shell">
+        <p class="blog-eyebrow">À lire, à picorer, à partager</p>
+        <h2 id="articles-title">Tous nos articles</h2>
+
+        {{ $featured := where $all "Params.featured" true }}
+        {{ if gt (len $featured) 0 }}
+          {{ $featured = $featured.ByParam "featured_order" }}
+          {{ partial "blog-preview-row.html" (dict "pages" (first 10 $featured) "id" "featured" "title" "À la une" "category" nil) }}
+        {{ end }}
+
+        {{ if and $editorial.enabled (gt (len $selected) 0) }}
+          {{ partial "blog-preview-row.html" (dict "pages" $selected "id" "editorial" "title" $editorial.title "category" nil) }}
+        {{ end }}
+        {{ range $category := $categories }}
+          {{ $categoryPages := where $all "Params.categories" "intersect" (slice $category.id) }}
+          {{ if gt (len $categoryPages) 0 }}
+            {{ partial "blog-preview-row.html" (dict "pages" $categoryPages "id" $category.id "title" (printf "#%s" $category.label) "category" $category) }}
+          {{ end }}
+        {{ end }}
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__inner"><img class="site-footer__logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"><p class="site-footer__tagline"><strong>Votre partenaire </strong><span class="site-footer__trans">trans</span><strong>formation</strong></p><nav class="site-footer__links" aria-label="Informations légales"><a href="/mentions-legales/">Mentions légales</a><a href="/cgv/">CGV</a><a href="/contact/">Nous contacter</a></nav></div></footer>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "categories": [
+    {"id":"actus", "label":"Actus", "image":"images/blog/photo-femme.png", "color":"pink"},
+    {"id":"jusdecerveau", "label":"Jusdecerveau", "image":"images/blog/photo-femme.png", "color":"blue"},
+    {"id":"interviews", "label":"Interviews", "image":"images/blog/photo_lemuriens.png", "color":"yellow"},
+    {"id":"outils", "label":"Outils", "image":"images/blog/photo_casserole.png", "color":"pink"}
+  ],
+  "titles": ["Lorem ipsum dolor sit amet", "Consectetur adipiscing elit", "Sed do eiusmod tempor", "Ut enim ad minim veniam", "Duis aute irure dolor", "Excepteur sint occaecat"],
+  "summary":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+}

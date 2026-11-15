@@ -1,0 +1,23 @@
+{{- /* Global article numbering across body and separately rendered callout notes.
+     Preserve Goldmark IDs/backlinks; only replace visible numbers and add focus targets. */ -}}
+{{- $html := . | string -}}
+{{- $references := findRE `<a href="#fn:[^"]+" class="footnote-ref"[^>]*>[^<]*</a>` $html -}}
+{{- $numbers := dict -}}
+{{- $next := 0 -}}
+{{- range $references -}}
+  {{- $reference := . -}}
+  {{- $id := replaceRE `^.*href="#fn:([^"]+)".*$` `$1` $reference -}}
+  {{- if not (isset $numbers $id) -}}
+    {{- $next = add $next 1 -}}
+    {{- $numbers = merge $numbers (dict $id $next) -}}
+    {{- $old := printf `<li id="fn:%s">` $id -}}
+    {{- $new := printf `<li id="fn:%s" tabindex="-1"><a class="footnote-number" href="#fnref:%s" aria-label="Revenir à l’appel de note %d">%d</a>` $id $id $next $next -}}
+    {{- $html = replace $html $old $new -}}
+  {{- end -}}
+  {{- $number := index $numbers $id -}}
+  {{- $updated := replaceRE `>[^<]*</a>$` (printf `>%d</a>` $number) $reference -}}
+  {{- $updated = replace $updated `role="doc-noteref"` (printf `role="doc-noteref" aria-label="Lire la note %d"` $number) -}}
+  {{- $html = replace $html $reference $updated -}}
+{{- end -}}
+{{- $html = replaceRE `<sup id="(fnref[0-9]*:[^"]+)">` `<sup id="$1" tabindex="-1">` $html -}}
+{{- return ($html | safeHTML) -}}

@@ -1,0 +1,43 @@
+{{- /* Keep the existing automatic fallback for articles without editorial overrides. */ -}}
+{{- $next := false -}}
+{{- if not .Params.next_banner_empty -}}
+  {{- if .Params.next_article -}}
+    {{- $next = site.GetPage .Params.next_article -}}
+    {{- if not $next -}}
+      {{- errorf "Article suivant explicite introuvable : %s pour %s" .Params.next_article .File.Path -}}
+    {{- else if or (ne $next.Section "blog") (eq $next.RelPermalink .RelPermalink) $next.Draft ($next.PublishDate.After now) -}}
+      {{- errorf "Article suivant explicite non publiable ou invalide : %s pour %s" .Params.next_article .File.Path -}}
+    {{- end -}}
+  {{- else -}}
+  {{- $categoryID := index .Params.categories 0 -}}
+  {{- $pages := where site.RegularPages "Section" "blog" -}}
+  {{- $pages = where $pages "Params.categories" "intersect" (slice $categoryID) -}}
+  {{- $chronological := $pages.ByDate -}}
+  {{- $currentIndex := 0 -}}
+  {{- range $index, $page := $chronological -}}
+    {{- if eq $page.RelPermalink $.RelPermalink -}}{{- $currentIndex = $index -}}{{- end -}}
+  {{- end -}}
+  {{- $nextIndex := add $currentIndex 1 -}}
+  {{- if lt $nextIndex (len $chronological) -}}
+    {{- $next = index $chronological $nextIndex -}}
+  {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Params.next_banner_empty -}}
+  <div class="article-next-banner" aria-hidden="true"></div>
+{{- else if $next -}}
+  <section class="article-next-banner" aria-labelledby="article-next-title">
+    <p class="article-next-banner__label">A LIRE AUSSI</p>
+    <a href="{{ $next.RelPermalink }}" class="article-next-banner__link">
+      <p class="article-next-banner__title" id="article-next-title">{{ $next.Title }}</p>
+      <span class="article-next-banner__arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
+{{- else if .Params.next_teaser -}}
+  <section class="article-next-banner" aria-labelledby="article-next-title">
+    <p class="article-next-banner__label">ARTICLES SUIVANT :</p>
+    <div class="article-next-banner__link article-next-banner__link--static">
+      <p class="article-next-banner__title" id="article-next-title">{{ .Params.next_teaser }}</p>
+    </div>
+  </section>
+{{- end -}}
