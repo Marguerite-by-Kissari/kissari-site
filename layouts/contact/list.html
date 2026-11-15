@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} — KISSARI</title>
+  <meta name="description" content="{{ .Description }}">
+  <link rel="icon" href="{{ "favicons/favicon.ico" | relURL }}?v=20261015-3" sizes="any">
+  <link rel="icon" type="image/png" href="{{ "favicons/favicon-32.png" | relURL }}?v=20261015-3" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ "favicons/apple-touch-icon.png" | relURL }}?v=20261015-3">
+  <meta name="theme-color" content="#141414">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
+  <link rel="stylesheet" href="{{ "css/contact.css" | relURL }}?v={{ readFile "static/css/contact.css" | sha256 }}">
+  <script src="{{ "js/contact-info.js" | relURL }}?v={{ readFile "static/js/contact-info.js" | sha256 }}" defer></script>
+</head>
+<body class="contact-page">
+  <a class="contact-skip" href="#contact-channels">Aller aux coordonnées</a>
+  <header class="site-header" aria-label="KISSARI">
+    <a href="{{ "/" | relURL }}" aria-label="KISSARI — accueil"><img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"></a>
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a href="{{ "/blog/" | relURL }}">Le blog par KA</a><a class="active" href="{{ "/contact/" | relURL }}" aria-current="page">Contact</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
+    </nav>
+    <p class="language"><strong>FR</strong> / EN</p>
+  </header>
+
+  <main>
+    <section class="contact-hero" aria-labelledby="contact-title">
+      <a class="contact-back" href="{{ "/" | relURL }}"><img src="{{ "images/contact/fleche.png" | relURL }}" width="21" height="15" alt="">Retour</a>
+      <div class="contact-hero__copy">
+        <p class="contact-kicker">#CONTACT</p>
+        <h1 id="contact-title"><span>Et si on brisait</span> <span>la glace ?</span></h1>
+        <p class="contact-lead">Un projet en béton, une idée en or, une question à creuser,&nbsp;<br class="contact-desktop-break">une collaboration à bâtir ou un grain de sable&nbsp;<br class="contact-desktop-break">sur notre site (accessibilité) ?</p>
+        <p class="contact-invitation">Jetez-vous à l’eau<br>et écrivez-nous !</p>
+      </div>
+      <img class="contact-hero__woman" src="{{ "images/contact/femme-glacon.png" | relURL }}" width="1659" height="1408" alt="" fetchpriority="high">
+    </section>
+    <div class="contact-frieze" aria-hidden="true"><img src="{{ "images/contact/frise.png" | relURL }}" width="4000" height="132" alt=""></div>
+
+    <section id="contact-channels" class="contact-channels" aria-label="Contacter KISSARI">
+      <div class="contact-channel-list">
+      <div class="contact-channel-row">
+        <img class="contact-channel-icon" src="{{ "images/contact/email.svg" | relURL }}" width="34" height="34" alt="" aria-hidden="true">
+        <div class="contact-email-group">
+          <a id="contact-email" class="contact-channel-link" href="mailto:contact@kissari.fr">contact@kissari.fr</a>
+          <details id="contact-privacy-info" class="contact-info">
+            <summary aria-label="Informations sur le traitement de vos données" aria-controls="contact-privacy-text">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+            </summary>
+            <div id="contact-privacy-text" class="contact-info-panel" role="note">
+              <p>contact@kissari.fr traite les informations de ce formulaire pour répondre à votre demande et suivre nos échanges, sur la base de l'intérêt légitime née de votre demande de contact, et, ou, d'informations. Les champs marqués d’un astérisque sont nécessaires à remplir, l’absence d'information adaptée dans ces champs rend la demande impossible à traiter. Pour connaître les destinataires, la conservation et vos droits, consultez dpo@kissari.fr.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="contact-channel-row">
+        <img class="contact-channel-icon" src="{{ "images/contact/linkedin.svg" | relURL }}" width="34" height="34" alt="" aria-hidden="true">
+        <a id="contact-linkedin" class="contact-channel-link" href="https://www.linkedin.com/company/kissari/home/" target="_blank" rel="noopener noreferrer" aria-label="KISSARI sur linkedin — nouvel onglet">KISSARI sur linkedin</a>
+      </div>
+      </div>
+      <!-- Bloc éditorial permanent demandé : il ne signale aucun envoi par le site. -->
+      <section class="contact-response-note" aria-labelledby="contact-response-title">
+        <h2 id="contact-response-title"><span>Votre message sera</span> <span>entre de bonnes mains !</span></h2>
+        <p>On met tout en œuvre pour vous répondre sous 48 h.<br>Et s’il y a le feu au lac, appelez-nous au <a href="tel:+33664101335">06 64 10 13 35</a>.</p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__inner"><img class="site-footer__logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"><p class="site-footer__tagline"><strong>Votre partenaire </strong><span class="site-footer__trans">trans</span><strong>formation</strong></p><nav class="site-footer__links" aria-label="Informations légales"><a href="{{ "documents/Mentions_légales_KISSARI.pdf" | relURL }}">Mentions légales</a><a href="{{ "documents/RGPD.pdf" | relURL }}">RGPD</a><a href="/contact/">Nous contacter</a></nav></div></footer>
+</body>
+</html>

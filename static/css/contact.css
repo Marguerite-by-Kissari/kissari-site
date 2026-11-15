@@ -1,0 +1,199 @@
+/* CONTACT — artefacts fournis, canevas et composants du site existant. */
+.contact-page {
+  max-width: 1920px;
+  margin-inline: auto;
+  container-type: inline-size;
+}
+.contact-page [hidden] { display: none !important; }
+.contact-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.contact-skip {
+  position: absolute;
+  z-index: 100;
+  left: 16px;
+  top: 12px;
+  padding: 12px 16px;
+  color: var(--ink);
+  background: var(--yellow);
+  transform: translateY(-200%);
+}
+.contact-skip:focus { transform: none; }
+.contact-hero {
+  position: relative;
+  min-height: 600px;
+  height: 37.4cqw;
+  max-height: 718px;
+  background: #c3ebf3;
+  overflow: hidden;
+}
+.contact-back {
+  position: absolute;
+  top: 2.5cqw;
+  left: 4%;
+  z-index: 2;
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.contact-back img { display: block; width: 21px; height: auto; }
+.contact-hero__copy {
+  position: relative;
+  z-index: 1;
+  width: 51%;
+  margin-left: 4%;
+  padding-top: max(116px, 7cqw);
+}
+.contact-kicker { margin: 0 0 12px; font-size: clamp(16px, 1.16cqw, 22px); font-weight: 800; }
+.contact-hero h1 {
+  margin: 0;
+  font-size: clamp(64px, 5.35cqw, 103px);
+  line-height: .96;
+  font-weight: 800;
+  letter-spacing: -.045em;
+}
+.contact-hero h1 span { display: block; }
+.contact-lead {
+  margin: 2.5cqw 0 0;
+  font-size: clamp(18px, 1.36cqw, 26px);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+}
+.contact-invitation {
+  margin: 1.9cqw 0 0;
+  font-size: clamp(30px, 2.5cqw, 48px);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+.contact-hero__woman {
+  position: absolute;
+  right: 7.5%;
+  bottom: 0;
+  width: 41.45%;
+  height: auto;
+  display: block;
+}
+.contact-frieze { overflow: hidden; line-height: 0; }
+.contact-frieze img { display: block; width: 100%; height: auto; }
+/* Coordonnées : groupe centré, icônes alignées dans une colonne commune, sans libellés ni soulignement. */
+.contact-channels {
+  width: 82.65%;
+  max-width: 1587px;
+  margin-inline: auto;
+  padding: 64px 0 90px;
+}
+.contact-channel-list {
+  display: grid;
+  grid-template-columns: 34px minmax(0, auto);
+  row-gap: 18px;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  align-items: center;
+  column-gap: 20px;
+  min-height: 48px;
+  font-size: clamp(22px, 1.6cqw, 31px);
+  line-height: 1.4;
+}
+.contact-channel-row { display: contents; }
+.contact-channel-icon { display: block; width: 34px; height: 34px; }
+.contact-channel-link {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 0;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.contact-channel-link:hover { text-decoration: none; }
+/* Information RGPD : disclosure natif au clic/clavier, survol ajouté par JS.
+   La bulle reste attachée à droite de l'icône et ne décale pas le bloc rose. */
+.contact-email-group { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.contact-info { position: relative; flex: 0 0 44px; font-size: 16px; font-weight: 400; }
+.contact-info summary { display: flex; justify-content: center; align-items: center; width: 44px; min-height: 44px; cursor: pointer; list-style: none; border-radius: 50%; }
+.contact-info summary::-webkit-details-marker { display: none; }
+.contact-info summary:hover { background: #c3ebf3; }
+.contact-info summary:focus-visible { outline: 3px solid #000001; outline-offset: 3px; }
+.contact-info-panel { position: absolute; z-index: 20; top: 100%; right: 0; width: min(520px, 76vw); padding: 22px; background: #fff; color: var(--ink); border: 1px solid #1d1d1b; border-radius: 14px; box-shadow: 0 8px 28px #0003; text-align: left; line-height: 1.55; overflow-wrap: anywhere; }
+.contact-info-panel p { margin: 0; }
+
+/* Fond fourni bloc-rose.png : aucune capture de texte, copie en HTML.
+   Largeur et marge pilotent le bloc sous les deux lignes de coordonnées. */
+.contact-response-note {
+  text-align: center;
+  width: 80.4%;
+  margin: 60px auto 0;
+  padding: 3.7cqw 3cqw;
+  color: var(--ink);
+  background: url('../images/contact/bloc-rose.png') center / 100% 100% no-repeat;
+}
+.contact-response-note h2 {
+  margin: 0;
+  font-size: clamp(36px, 4.05cqw, 78px);
+  line-height: 1.03;
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+.contact-response-note h2 span { display: block; }
+.contact-response-note p {
+  margin: 36px 0 0;
+  font-size: clamp(18px, 1.74cqw, 33px);
+  line-height: 1.3;
+  font-weight: 600;
+}
+.contact-response-note a { color: inherit; white-space: nowrap; text-decoration: none; }
+.contact-page a:focus-visible { outline: 3px solid #000001; outline-offset: 4px; }
+@media (min-width: 800px) and (max-width: 1299px) {
+  .contact-hero { min-height: 540px; }
+  .contact-hero__copy { width: 57%; padding-top: 112px; }
+  .contact-hero h1 { font-size: clamp(54px, 5.5cqw, 71px); }
+  .contact-lead { font-size: 18px; margin-top: 28px; }
+  .contact-desktop-break { display: none; }
+  .contact-invitation { font-size: 32px; margin-top: 28px; }
+  .contact-hero__woman { width: 42%; right: 3%; }
+}
+@media (max-width: 799px) {
+  .contact-page .site-header { height: auto; min-height: 72px; padding: 12px 5%; flex-wrap: wrap; gap: 12px; }
+  .contact-page .site-nav { order: 3; flex: 1 0 100%; justify-content: flex-start; flex-wrap: wrap; gap: 16px 20px; margin: 4px 0; font-size: 12px; }
+  .contact-page .language { margin-left: auto; }
+  .contact-hero { height: auto; min-height: 0; padding-bottom: 0; }
+  .contact-back { position: relative; top: auto; left: auto; margin: 14px 6% 0; font-size: 12px; }
+  .contact-hero__copy { width: auto; margin: 26px 6% 0; padding: 0; }
+  .contact-kicker { font-size: 16px; margin-bottom: 14px; }
+  .contact-hero h1 { font-size: clamp(42px, 10.5vw, 72px); line-height: .98; }
+  .contact-lead { margin-top: 28px; font-size: 18px; line-height: 1.4; }
+  .contact-desktop-break { display: none; }
+  .contact-invitation { margin-top: 26px; font-size: clamp(28px, 7vw, 40px); }
+  .contact-hero__woman { position: relative; right: auto; width: min(88%, 520px); margin: 30px 4% 0 auto; }
+  .contact-channels { width: 88%; padding: 36px 0 56px; }
+  /* Même colonne d’icônes sur mobile ; le groupe reste centré. */
+  .contact-channel-list { grid-template-columns: 26px minmax(0, auto); gap: 12px 10px; font-size: 18px; }
+  .contact-channel-icon { width: 26px; height: 26px; }
+  .contact-response-note { width: 100%; margin-top: 36px; padding: 30px 24px; background: #ffb9b8; border-radius: 28px; }
+  .contact-response-note h2 { font-size: clamp(28px, 7vw, 40px); }
+  .contact-response-note p { margin-top: 24px; font-size: 18px; line-height: 1.4; }
+  .contact-page .site-footer__inner { padding: 24px 6%; }
+  .contact-page .site-footer__logo { width: 56px; }
+  .contact-page .site-footer__tagline { font-size: 18px; }
+  .contact-page .site-footer__links { gap: 18px; }
+  .contact-page .site-footer__links a { font-size: 16px; }
+}
+@media (forced-colors: active) {
+  .contact-response-note { background: Canvas; outline: 1px solid CanvasText; }
+}

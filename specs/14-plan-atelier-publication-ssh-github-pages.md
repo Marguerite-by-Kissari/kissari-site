@@ -1,5 +1,9 @@
 # Plan d’actions — Atelier Kissari, Git SSH et GitHub Pages
 
+> **PLAN HISTORIQUE — remplacé pour l’exécution par `16-publication-autonome-depot-unique.md`.** Décision validée : un dépôt existant, deux propriétaires Write avec leurs clés personnelles, notre administration conservée, un workflow Pages, sans approbation webmaster. Les sections ci-dessous décrivent le cadrage antérieur, pas l’état actuel ni des étapes à recommencer.
+>
+> **État actualisé :** source Git initialisée et M15 intégré au commit `ae2bc418231191014b06396395a69ee62c48cbe4` ; dépôt `Marguerite-by-Kissari/kissari-site`, branche `main`. Les anciens constats « aucun .git », « dépôt à identifier » et « M15 isolé » ne sont plus actuels. Ne pas refaire le remplacement déjà terminé. Connexion de publication et workflow restent à implémenter selon la spécification 16.
+
 ## Statut et décisions
 
 Plan préparé le 15 novembre 2026. Aucun développement applicatif, initialisation Git, accès SSH distant, push, création de dépôt, changement de clé, workflow distant ou déploiement n’est effectué par ce document.

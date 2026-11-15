@@ -1,5 +1,7 @@
 # Atelier — pilotage GitHub et publication différée
 
+> **SPÉCIFICATION HISTORIQUE — architecture et gouvernance supplantées par `16-publication-autonome-depot-unique.md`.** Pour Virginie et Christelle : dépôt unique `Marguerite-by-Kissari/kissari-site`, clés/comptes personnels Write, publication directe sans approbation webmaster, un workflow Actions/Pages. GitHub App et circuit PR ci-dessous sont des variantes historiques, pas des prérequis à implémenter. Le dépôt et la branche `main` sont identifiés ; M15 a été intégré. Les invariants de révision, de confidentialité et de programmation restent utiles, sans réintroduire la relecture humaine refusée.
+
 ## Statut et périmètre
 
 Demande utilisateur du 12 novembre 2026 : rendre accessibles dans l’atelier les opérations Git/GitHub nécessaires au pilotage éditorial, avec deux circuits, avec ou sans pull request, et permettre une publication future.

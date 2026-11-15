@@ -79,7 +79,15 @@ class NavigationRecette(unittest.TestCase):
     def test_M04(self):
         for path in self.pages:
             with self.subTest(page=str(path)):
-                self.assertNotIn('Contact', [a['text'] for a in self.links(path)])
+                links = self.links(path)
+                if path.parent.name == 'contact':
+                    # Nouvelle page demandée : seul son propre menu porte l’état Contact.
+                    contact = [a for a in links if a['text'] == 'Contact']
+                    self.assertEqual(len(contact), 1)
+                    self.assertEqual(contact[0]['href'], '/contact/')
+                    self.assertEqual(contact[0].get('aria-current'), 'page')
+                else:
+                    self.assertNotIn('Contact', [a['text'] for a in links])
                 self.assertIn('>Nous contacter</a>', path.read_text())
         self.assertNotIn('>Contact</a>', self.app)
 

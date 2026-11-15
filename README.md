@@ -3,7 +3,17 @@
 Sources locales de référence destinées au dépôt `Marguerite-by-Kissari/kissari-site`.
 M15 est intégré à la demande d’Eric : rédaction d’article, réglage de rubrique,
 export et test Hugo local. Le push des sources et le déploiement Pages sont deux étapes distinctes.
-Ce premier remplacement n’installe aucun workflow de déploiement ni de publication depuis l’atelier.
+Le dépôt contient aussi le pilote de publication Git/SSH et son modèle de workflow Pages.
+Le modèle reste dans `deployment/` : il n’est pas un workflow actif sous `.github/workflows/`.
+
+## État des éléments intégrés
+
+- Page `/contact/` avec contacts directs email/LinkedIn, icônes alignées, notice d’information et bloc rose ; aucun formulaire d’envoi.
+- Mentions légales et RGPD : PDF fournis sous `static/documents/`, liens dans tous les pieds de page et empreintes dans `data/legal_documents.json`.
+- Article FormPro : corrections M21 fournies, URL et métadonnées conservées.
+- Atelier : connecteur Git/SSH, boutons de publication, installateur et générateur de packages personnels ajoutés comme **pilote**. Le push du code ne crée pas d’accès GitHub et ne valide pas l’installation Windows/macOS.
+- Restent à finaliser séparément : catalogue GitHub complet et réouverture d’articles, recette native des postes, SEO/sitemap/domaine et activation Pages. Ne pas assimiler ce dépôt synchronisé à une mise en ligne effective.
+- Les clés privées et archives personnelles sont externes au dépôt ; les scripts de génération ne contiennent aucune clé. `livrables/` et les sorties Hugo ne sont pas versionnés.
 
 ## Sources
 - Spécifications graphiques et textes fournis : `specs/001-homepage.md`
