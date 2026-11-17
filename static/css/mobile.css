@@ -81,6 +81,79 @@
     bottom: 4px;
   }
 
+  /* MANIFESTE MOBILE — trial requested: text left, smaller artwork right.
+     Use real grid columns (no text/art overlap), full-width headings and an
+     automatic section height. Art column: 28vw, bounded to 88–148px;
+     artwork extends 24px farther right to touch the section edge.
+     display:contents only unwraps the non-semantic copy div on mobile. */
+  .home-page .manifest {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr) clamp(88px, 28vw, 148px);
+    column-gap: 12px;
+    padding: 32px 24px 0;
+    overflow: visible;
+  }
+  .home-page .manifest-copy {
+    display: contents;
+  }
+  .home-page .manifest .section-label {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .home-page .manifest h2 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: clamp(32px, 8vw, 44px);
+    line-height: 1;
+  }
+  .home-page .manifest h3 {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin: 20px 0 24px;
+    font-size: 26px;
+    line-height: 1.15;
+  }
+  .home-page .manifest ul {
+    grid-column: 1;
+    grid-row: 4;
+    min-width: 0;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .home-page .manifest li {
+    padding: 14px 0;
+  }
+  .home-page .manifest-pill {
+    grid-column: 1;
+    grid-row: 5;
+    justify-self: start;
+    max-width: 100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .home-page .manifest-visual {
+    grid-column: 2;
+    grid-row: 4 / 6;
+    align-self: end;
+    position: relative;
+    inset: auto;
+    /* Extend through the 24px right padding: artwork touches the stage edge
+       and grows slightly without taking any width away from the text. */
+    width: calc(100% + 24px);
+    margin: 0;
+    overflow: visible;
+  }
+  .home-page .manifest-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
   /* Home: remove only the red-swimsuit woman and her watermark panel.
      Put copy/video in normal flow so the subtitle cannot cover the video. */
   .home-page .hero-woman-panel {
