@@ -1,7 +1,8 @@
-baseURL = "http://localhost:1314/"
+baseURL = "https://kissari.com/"
 languageCode = "fr-fr"
-title = "KISSARI — proposition locale"
-disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
+title = "KISSARI"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "RSS"]
 
 [outputFormats.EditorialCatalog]
   mediaType = "application/json"
@@ -10,4 +11,4 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   notAlternative = true
 
 [params]
-  environment = "local-prototype"
+  environment = "production"

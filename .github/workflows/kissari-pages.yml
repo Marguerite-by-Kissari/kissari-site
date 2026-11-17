@@ -1,0 +1,51 @@
+name: Kissari - Controle avant publication
+
+on:
+  push:
+    branches: [main, 'atelier/**', 'recette/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# PREPUBLICATION: no Pages permission, no deployment job, no scheduled release.
+permissions:
+  contents: read
+
+concurrency:
+  group: kissari-controle-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78
+        with:
+          hugo-version: '0.154.5'
+          extended: true
+      - name: Verifier la configuration de production
+        run: python3 scripts/test-production-config.py
+      - name: Verifier les reglages et exclusions editoriales
+        run: |
+          mkdir -p "$HOME/.hermes/cache/scratch"
+          python3 scripts/test-editorial-config.py
+          python3 scripts/test-editorial-build.py
+      - name: Verifier JavaScript
+        run: |
+          node --check static/atelier-article/app.js
+          node --check static/atelier-article/editorial.js
+          node --check static/atelier-article/publication-ui.js
+          for file in static/js/*.js; do node --check "$file"; done
+      - name: Construire et controler sans publier
+        run: python3 scripts/build-production.py
+      - name: Conserver le resultat pour recette privee
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: kissari-prepublication-${{ github.sha }}
+          path: public
+          if-no-files-found: error
+          retention-days: 7
