@@ -1,13 +1,15 @@
 # Prépublication KISSARI
 
-## État volontairement non publié
+## Publication autorisée et déploiement limité à main
 
-Le domaine de production prévu est `https://kissari.com/`. La présence de cette URL dans les sources ne publie rien et ne modifie pas le DNS.
+Le domaine de production est `https://kissari.com/`. Les DNS restent une opération séparée et coordonnée.
 
-- `.github/workflows/kissari-pages.yml` réalise uniquement les contrôles, la construction et l'archivage privé du résultat (7 jours).
-- Il n'a ni job de déploiement, ni permission `pages: write` / `id-token: write`, ni reconstruction programmée.
-- `deployment/kissari-pages.yml` demeure un modèle de publication inactif. Ne pas l'activer en parallèle : au lancement, faire évoluer le workflow unique après accord d'Éric.
-- GitHub Pages, la visibilité publique du dépôt et les DNS nécessitent un feu vert distinct.
+- `.github/workflows/kissari-pages.yml` est l'unique workflow actif : il contrôle et construit toutes les branches prévues, puis déploie uniquement `main` si tous les contrôles réussissent.
+- Les branches `atelier/**`, `recette/**` et les PR ne déploient pas. Le résultat de recette est archivé 7 jours.
+- Les permissions globales restent en lecture ; seul le job `deploy` reçoit `pages: write` et `id-token: write`.
+- La reconstruction des articles arrivés à échéance est programmée toutes les quinze minutes ; GitHub peut retarder les runs.
+- `deployment/kissari-pages.yml` demeure un ancien modèle inactif. Ne pas l'activer en parallèle.
+- L'environnement `github-pages` doit autoriser uniquement la branche `main`, sans approbation obligatoire par publication.
 
 ## Vérifier le candidat
 
@@ -34,5 +36,6 @@ Le sitemap expose uniquement les pages rendues, pas l'atelier. Le fichier robots
 2. Rendre le dépôt public seulement sur accord.
 3. Configurer Pages et l'environnement `github-pages` limité à `main`.
 4. Faire évoluer le workflow unique en réutilisant les mêmes contrôles et la même construction. La configuration de production doit conserver `https://kissari.com/`, pas une URL locale ou un domaine invalide.
-5. Valider un premier déploiement, son SHA et son certificat ; effectuer ensuite la bascule DNS coordonnée.
-6. Tester les redirections, les branches `atelier/**`, les échecs de build et la reconstruction programmée. Le cron GitHub n'offre pas une ponctualité garantie à la minute.
+5. Valider un premier déploiement et son SHA ; vérifier le routage du domaine par une résolution locale de diagnostic, puis donner le feu vert à la bascule DNS.
+6. Après propagation DNS, vérifier le certificat de `kissari.com` et `www.kissari.com` et imposer HTTPS. Ne pas annoncer HTTPS opérationnel avant cette vérification.
+7. Tester les redirections, les branches `atelier/**`, les échecs de build et la reconstruction programmée. Le cron GitHub n'offre pas une ponctualité garantie à la minute.

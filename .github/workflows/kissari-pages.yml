@@ -1,4 +1,4 @@
-name: Kissari - Controle avant publication
+name: Kissari - Controle et publication Pages
 
 on:
   push:
@@ -6,19 +6,23 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
 
-# PREPUBLICATION: no Pages permission, no deployment job, no scheduled release.
 permissions:
   contents: read
 
 concurrency:
-  group: kissari-controle-${{ github.ref }}
+  group: kissari-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: read
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -40,12 +44,51 @@ jobs:
           node --check static/atelier-article/editorial.js
           node --check static/atelier-article/publication-ui.js
           for file in static/js/*.js; do node --check "$file"; done
-      - name: Construire et controler sans publier
+      - name: Configurer Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - name: Construire et controler le site public
         run: python3 scripts/build-production.py
-      - name: Conserver le resultat pour recette privee
+      - name: Ecarter une revision main depassee
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          url = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY'] + '/git/ref/heads/main'
+          request = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+          with urllib.request.urlopen(request) as response:
+              current = json.load(response)['object']['sha']
+          if current != os.environ['GITHUB_SHA']:
+              raise SystemExit('Revision depassee : aucun deploiement.')
+          PY
+      - name: Preparer artefact Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: public
+      - name: Conserver le resultat de recette sans publier
+        if: github.ref != 'refs/heads/main'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: kissari-prepublication-${{ github.sha }}
+          name: kissari-recette-${{ github.sha }}
           path: public
           if-no-files-found: error
           retention-days: 7
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deployer la revision controlee
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
