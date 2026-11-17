@@ -1,7 +1,8 @@
 /* MOBILE — scoped overrides only; desktop >= 800px keeps the approved layout.
    Shared navigation on home/blog/articles/contact; hero changes on home only. */
 .mobile-nav-toggle,
-.hero-mobile-divider {
+.hero-mobile-divider,
+.expertises-title-mobile {
   display: none;
 }
 
@@ -79,6 +80,82 @@
   }
   .site-header .site-nav .active::after {
     bottom: 4px;
+  }
+
+  /* EXPERTISES MOBILE — two full-width title statements, then the existing
+     two-column colour grid. Cards grow with their text; no fixed-height crop.
+     Keep headings readable: long title statements wrap naturally on phones. */
+  .home-page .expertises {
+    padding: 40px 16px 48px;
+  }
+  .home-page .expertises-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin: 0 0 28px;
+  }
+  .home-page .expertises-heading h2 {
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+  .home-page .expertises-title-desktop {
+    display: none;
+  }
+  .home-page .expertises-title-mobile {
+    display: inline;
+  }
+  .home-page .expertise-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 0;
+    overflow: visible;
+  }
+  .home-page .expertise-card {
+    height: auto;
+    min-width: 0;
+    padding: 16px 12px 24px;
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .home-page .expertise-card .card-person {
+    display: none;
+  }
+  .home-page .expertise-card .card-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: none;
+  }
+  .home-page .expertise-card .card-icon {
+    top: 16px;
+    left: 40px;
+    width: 28px;
+    height: 28px;
+  }
+  .home-page .card-copy small {
+    display: inline-block;
+    line-height: 28px;
+    font-size: 11px;
+  }
+  .home-page .expertise-card .card-copy h3 {
+    margin: 16px 0 10px;
+    font-size: clamp(16px, 4.2vw, 26px);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    overflow-wrap: anywhere;
+  }
+  .home-page .expertise-card .card-copy h4 {
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+  .home-page .expertise-card .card-copy p {
+    max-width: none;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   /* MANIFESTE MOBILE — trial requested: text left, smaller artwork right.
