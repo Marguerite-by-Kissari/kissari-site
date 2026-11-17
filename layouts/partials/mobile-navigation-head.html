@@ -1,0 +1,3 @@
+{{/* Mobile-only enhancement; keep the approved desktop stylesheet untouched. */}}
+<link rel="stylesheet" href="{{ "css/mobile.css" | relURL }}?v={{ readFile "static/css/mobile.css" | sha256 }}">
+<script src="{{ "js/mobile-navigation.js" | relURL }}?v={{ readFile "static/js/mobile-navigation.js" | sha256 }}" defer></script>

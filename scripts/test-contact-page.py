@@ -22,7 +22,12 @@ class ContactTests(unittest.TestCase):
             self.assertTrue(any(t=='script' and '/js/contact-info.js?' in a.get('src','') for t,a in p.tags))
             self.assertEqual(sum(t=='h1' for t,a in p.tags),1)
             self.assertEqual(sum(t=='footer' for t,a in p.tags),1)
-            self.assertFalse(any(t in ('form','input','textarea','button') for t,a in p.tags),'The old contact form is still rendered')
+            self.assertFalse(any(t in ('form','input','textarea') for t,a in p.tags),'The old contact form is still rendered')
+            buttons=[a for t,a in p.tags if t=='button']
+            self.assertEqual(len(buttons),1)
+            self.assertEqual(buttons[0].get('class'),'mobile-nav-toggle')
+            self.assertEqual(buttons[0].get('type'),'button')
+            self.assertEqual(buttons[0].get('aria-controls'),'primary-navigation')
             links=[a for t,a in p.tags if t=='a']
             self.assertEqual(sum(a.get('href')=='mailto:contact@kissari.fr' for a in links),1)
             linkedin=[a for a in links if a.get('href')=='https://www.linkedin.com/company/kissari/home/']

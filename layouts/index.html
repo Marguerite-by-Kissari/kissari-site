@@ -12,11 +12,13 @@
   <meta name="theme-color" content="#141414">
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
   <script src="{{ "js/hero-video.js" | relURL }}" defer></script>
+  {{ partial "mobile-navigation-head.html" . }}
 </head>
 <body class="home-page">
   <header class="site-header" aria-label="Kissari">
     <img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="Kissari">
-    <nav class="site-nav" aria-label="Navigation principale">
+    {{ partial "mobile-navigation-toggle.html" . }}
+    <nav id="primary-navigation" class="site-nav" aria-label="Navigation principale">
       <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a href="{{ "/blog/" | relURL }}">Le blog par KA</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
     </nav>
     <p class="language"><strong>FR</strong> / EN</p>
@@ -28,6 +30,7 @@
         <p class="kicker">BIENVENUE DANS L’UNIVERS DE KISSARI</p>
         <h1 id="hero-title">Le nouveau site<br>arrive <span>bientôt.</span></h1>
         <p class="hero-lead">En attendant, découvrez ce qui nous anime <strong>ici</strong> et dans notre <strong>blog.</strong></p>
+        <hr class="hero-mobile-divider" aria-hidden="true">
       </div>
       <div class="hero-woman-panel" aria-hidden="true">
         <span class="hero-watermark"><img src="{{ "images/logo-kissari.png" | relURL }}" alt=""></span>

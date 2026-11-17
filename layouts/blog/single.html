@@ -9,11 +9,13 @@
   <link rel="icon" href="{{ "favicons/favicon.ico" | relURL }}?v=20261015-3" sizes="any">
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
   <script src="{{ "js/article-notes.js" | relURL }}?v={{ readFile "static/js/article-notes.js" | sha256 }}" defer></script>
+  {{ partial "mobile-navigation-head.html" . }}
 </head>
 <body class="blog-page article-page">
   <header class="site-header" aria-label="KISSARI">
     <a href="{{ "/" | relURL }}" aria-label="KISSARI — accueil"><img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"></a>
-    <nav class="site-nav" aria-label="Navigation principale">
+    {{ partial "mobile-navigation-toggle.html" . }}
+    <nav id="primary-navigation" class="site-nav" aria-label="Navigation principale">
       <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a class="active" href="{{ "/blog/" | relURL }}">Le blog par KA</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
     </nav>
     <p class="language"><strong>FR</strong> / EN</p>

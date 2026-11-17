@@ -13,12 +13,14 @@
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v={{ readFile "static/css/site.css" | sha256 }}">
   <link rel="stylesheet" href="{{ "css/contact.css" | relURL }}?v={{ readFile "static/css/contact.css" | sha256 }}">
   <script src="{{ "js/contact-info.js" | relURL }}?v={{ readFile "static/js/contact-info.js" | sha256 }}" defer></script>
+  {{ partial "mobile-navigation-head.html" . }}
 </head>
 <body class="contact-page">
   <a class="contact-skip" href="#contact-channels">Aller aux coordonnées</a>
   <header class="site-header" aria-label="KISSARI">
     <a href="{{ "/" | relURL }}" aria-label="KISSARI — accueil"><img class="header-logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"></a>
-    <nav class="site-nav" aria-label="Navigation principale">
+    {{ partial "mobile-navigation-toggle.html" . }}
+    <nav id="primary-navigation" class="site-nav" aria-label="Navigation principale">
       <a href="{{ "/" | relURL }}">KISSARI</a><a href="{{ "/" | relURL }}#notre-manifeste">Notre manifeste</a><a href="{{ "/" | relURL }}#ce-qui-nous-anime">Ce qui nous anime</a><a href="{{ "/blog/" | relURL }}">Le blog par KA</a><a class="active" href="{{ "/contact/" | relURL }}" aria-current="page">Contact</a><a class="nav-link--muted" href="{{ "/" | relURL }}">Presse</a>
     </nav>
     <p class="language"><strong>FR</strong> / EN</p>

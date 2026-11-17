@@ -1,0 +1,145 @@
+/* MOBILE — scoped overrides only; desktop >= 800px keeps the approved layout.
+   Shared navigation on home/blog/articles/contact; hero changes on home only. */
+.mobile-nav-toggle,
+.hero-mobile-divider {
+  display: none;
+}
+
+@media (max-width: 799px) {
+  /* One compact row: original logo, FR/EN, 44px burger. Expanded links occupy
+     their own row in document flow: no overlay or hidden content underneath. */
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto 44px;
+    grid-template-areas: "logo language toggle" "navigation navigation navigation";
+    gap: 0 16px;
+    height: auto;
+    min-height: 64px;
+    padding: 8px 16px;
+  }
+  .site-header > :first-child {
+    grid-area: logo;
+    justify-self: start;
+  }
+  .site-header .header-logo {
+    display: block;
+    width: 40px;
+    height: auto;
+  }
+  .site-header .language {
+    grid-area: language;
+    display: block;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .mobile-nav-toggle {
+    grid-area: toggle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 1px solid #777;
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+  .mobile-nav-toggle[hidden] {
+    display: none;
+  }
+  .mobile-nav-toggle:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+  }
+  .site-header .site-nav {
+    grid-area: navigation;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 8px 0 0;
+    padding: 8px 0 0;
+    border-top: 1px solid #555;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .site-header[data-mobile-ready] .site-nav {
+    display: none;
+  }
+  .site-header[data-menu-open="true"] .site-nav {
+    display: flex;
+  }
+  .site-header .site-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 6px;
+  }
+  .site-header .site-nav .active::after {
+    bottom: 4px;
+  }
+
+  /* Home: remove only the red-swimsuit woman and her watermark panel.
+     Put copy/video in normal flow so the subtitle cannot cover the video. */
+  .home-page .hero-woman-panel {
+    display: none;
+  }
+  .home-page .hero {
+    height: auto;
+    padding: 40px 16px 24px;
+  }
+  .home-page .hero-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+  .home-page .hero h1 {
+    font-size: clamp(32px, 9.5vw, 51px);
+  }
+  .home-page .hero-lead {
+    margin-top: 24px;
+  }
+  /* The requested separator: 120px black rule, mobile only. Increase the
+     margins here to give the subtitle/video more breathing room. */
+  .home-page .hero-mobile-divider {
+    display: block;
+    width: min(120px, 40%);
+    margin: 24px auto 28px;
+    border: 0;
+    border-top: 2px solid var(--ink);
+  }
+  .home-page .hero-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    transform: none;
+  }
+  .home-page .hero-panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(408px, 100%);
+    height: auto;
+    aspect-ratio: 1;
+    transform: none;
+    object-fit: contain;
+  }
+  /* Mobile: native video controls replace the decorative play badge.
+     display:none also removes its reserved space; desktop stays unchanged. */
+  .home-page .hero-media-badge {
+    display: none;
+  }
+  .home-page .hero-video-status {
+    position: static;
+    order: 2;
+    width: 100%;
+  }
+}
