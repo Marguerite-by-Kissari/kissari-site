@@ -1,4 +1,4 @@
-baseURL = "https://kissari.com/"
+baseURL = "https://example.invalid/"
 languageCode = "fr-fr"
 title = "KISSARI"
 enableRobotsTXT = true
