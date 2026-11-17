@@ -18,7 +18,7 @@ assert (out/'blog/catalogue-editorial.json').is_file(),'M15: catalogue public no
 cat=json.loads((out/'blog/catalogue-editorial.json').read_text())
 assert len(cat['articles'])==5
 html=(out/'blog/index.html').read_text()
-assert 'id="editorial-title"' in html and 'Zoom sur nos idées' in html
+assert 'id="editorial-title"' in html and 'Zoom sur le marketing learning' in html
 section=html.split('id="editorial-title"',1)[1].split('</section>',1)[0]
 positions=[section.index('href="'+p+'"') for p in config['article_paths']]
 assert positions==sorted(positions)

@@ -1,5 +1,5 @@
 ---
-title: "Le marketing de la formation aux avant-postes de l’engagement"
+title: "Le marketing learning aux avant-postes de l’engagement"
 slug: "marketing-formation-avant-postes-engagement"
 description: "Dès 2017, Virginie Jaulin défendait une conviction encore peu partagée : concevoir une formation ne suffit pas, encore faut-il la faire adopter. Une vision qui guide toujours notre expertise du marketing learning."
 author: "Virginie JAULIN"

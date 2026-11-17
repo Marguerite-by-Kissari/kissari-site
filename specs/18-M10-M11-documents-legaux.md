@@ -7,10 +7,10 @@ Intégration locale des deux PDF fournis par Eric : M10 mentions légales et M11
 ## Sources et destinations
 
 Originaux dans le dossier Obsidian V1, laissés intacts :
-- `Mentions_légales_KISSARI.pdf` → `static/documents/Mentions_légales_KISSARI.pdf` (4 pages).
-- `RGPD.pdf` → `static/documents/RGPD.pdf` (3 pages).
+- `corrections-finale/Mentions_légales_par_KISSARI.pdf` → `static/documents/Mentions_légales_par_KISSARI.pdf` (4 pages).
+- `corrections-finale/RGPD.pdf` → `static/documents/RGPD.pdf` (2 pages).
 
-Liens via `relURL` dans les gabarits accueil, liste blog, article et contact. Même onglet comme précédemment, sans attribut download imposé. « Nous contacter », les menus, les styles et la signature restent inchangés. L’aperçu connecté construit les mêmes gabarits et embarque les deux ressources ; aucun footer juridique dupliqué dans l’atelier autonome.
+Liens via `relURL` dans les gabarits accueil, liste blog, article et contact. Nouvel onglet/fenêtre demandé par Eric : `target="_blank"`, `rel="noopener noreferrer"`, sans attribut download imposé. URLs PDF versionnées par SHA-256 pour invalider le cache lors du remplacement. Le navigateur choisit entre onglet et fenêtre ; le site d’origine reste ouvert. « Nous contacter », les menus, les styles et la signature restent inchangés. L’aperçu connecté construit les mêmes gabarits et embarque les deux ressources ; aucun footer juridique dupliqué dans l’atelier autonome.
 
 `data/legal_documents.json` conserve les empreintes réelles des PDF reçus. Après une future version approuvée, recopier le fichier et actualiser ce manifeste explicitement, puis reconstruire ; modifier l’original Obsidian ne modifie pas automatiquement l’asset du site.
 

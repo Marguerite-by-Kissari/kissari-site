@@ -65,6 +65,6 @@
     </section>
   </main>
 
-  <footer class="site-footer"><div class="site-footer__inner"><img class="site-footer__logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"><p class="site-footer__tagline"><strong>Votre partenaire </strong><span class="site-footer__trans">trans</span><strong>formation</strong></p><nav class="site-footer__links" aria-label="Informations légales"><a href="{{ "documents/Mentions_légales_KISSARI.pdf" | relURL }}">Mentions légales</a><a href="{{ "documents/RGPD.pdf" | relURL }}">RGPD</a><a href="/contact/">Nous contacter</a></nav></div></footer>
+  <footer class="site-footer"><div class="site-footer__inner"><img class="site-footer__logo" src="{{ "images/logo-kissari.png" | relURL }}" alt="KISSARI"><p class="site-footer__tagline"><strong>Votre partenaire </strong><span class="site-footer__trans">trans</span><strong>formation</strong></p><nav class="site-footer__links" aria-label="Informations légales"><a href="{{ "documents/Mentions_légales_par_KISSARI.pdf" | relURL }}?v={{ index .Site.Data.legal_documents "Mentions_légales_par_KISSARI.pdf" "sha256" }}" target="_blank" rel="noopener noreferrer">Mentions légales</a><a href="{{ "documents/RGPD.pdf" | relURL }}?v={{ index .Site.Data.legal_documents "RGPD.pdf" "sha256" }}" target="_blank" rel="noopener noreferrer">RGPD</a><a href="/contact/">Nous contacter</a></nav></div></footer>
 </body>
 </html>

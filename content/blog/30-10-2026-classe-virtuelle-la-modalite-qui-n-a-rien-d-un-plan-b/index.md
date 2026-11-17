@@ -31,15 +31,15 @@ Mais à distance, une autre équation se pose : comment garder les apprenants av
 
 ## L’engagement, premier de la classe !
 
-Quelques décennies après les premières expériences de visios, les mêmes questions (et difficultés) sont toujours d’actualité : comment **maintenir l’attention** ? Comment **faire participer** ? Comment éviter que les apprenants switchent sur une autre activité ? Car, à distance, l’apprenant dispose d’une arme de distraction massive : ses mails, ses notifs, ses réseaux sociaux et, éventuellement, son frigo J. Oui, ici encore, **l’engagement apprenant** est et demeure **au cœur du réacteur.** 
+Quelques décennies après les premières expériences de visios, les mêmes questions (et difficultés) sont toujours d’actualité : comment **maintenir l’attention** ? Comment **faire participer** ? Comment éviter que les apprenants switchent sur une autre activité ? Car, à distance, l’apprenant dispose d’armes de distraction massive : ses mails, ses notifs, ses réseaux sociaux et, éventuellement, son frigo. Oui, ici encore, **l’engagement apprenant** est et demeure **au cœur du réacteur.**
 
 
 ## Une obligation : aller à l’essentiel !
 
-La classe virtuelle se prête particulièrement bien aux **séquences courtes**, aux **allers-retours entre apports et mise en pratique**, et à une alternance régulière des activités. Le must ? Découper les parcours en plusieurs temps, avec des sessions d’environ 1 h à 1 h 30, plutôt que de transformer l’écran en salle de formation virtuelle pendant une demi-journée. **Et pour éviter le fameux “Vous êtes toujours là ?”...**
+La classe virtuelle se prête particulièrement bien aux **séquences courtes**, aux **allers-retours entre apports et mise en pratique**, et à une alternance régulière des activités. Le must ? Découper les parcours en plusieurs temps, avec des sessions d’environ 1 h à 1 h 30, plutôt que de transformer l’écran en salle de formation virtuelle pendant une demi-journée.
 
 
-{{< callout color="yellow" title="Voici cinq incontournables..." label="Liste" >}}
+{{< callout color="yellow" title="Et pour éviter le fameux Vous êtes toujours là…" title_line2="voici cinq incontournables ..." label="Liste" >}}
 1. **Changez de posture** : le formateur doit passer de sachant à **facilitateur** = orchestrer, donner le rythme, maîtriser le temps, les activités et, surtout, l’attention. À distance, il ne suffit plus de bien maîtriser son sujet : il faut savoir **faire vivre la séance**. 
 
 2. **Action !** : le formateur ne doit pas monopoliser la parole mais au contraire jongler entre les quiz, les débats, les cas pratiques, les brainstormings ou encore les sous-groupes. L’interaction et le feedback sont les boosters de l’engagement. **Bref, faites faire !**

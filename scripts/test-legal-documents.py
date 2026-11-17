@@ -32,6 +32,9 @@ class LegalDocuments(unittest.TestCase):
             with self.subTest(page=path,label=label):
                 targets=[a for a in links if a['text']==label]
                 self.assertEqual(len(targets),1)
+                self.assertEqual(targets[0].get('target'),'_blank')
+                self.assertTrue({'noopener','noreferrer'}.issubset(set(targets[0].get('rel','').split())))
+                self.assertIn('?v=',targets[0]['href'])
                 href=unquote(urlsplit(targets[0]['href']).path)
                 self.assertEqual(href,'/documents/'+name)
                 self.assertTrue((BUILD/href.lstrip('/')).is_file())
@@ -52,16 +55,16 @@ class LegalDocuments(unittest.TestCase):
             html=urllib.request.urlopen(result['blog_url'],timeout=15).read().decode()
             links=Footer(html).links
             manifest=json.loads(MANIFEST.read_text())
-            for label,name in [('Mentions légales','Mentions_légales_KISSARI.pdf'),('RGPD','RGPD.pdf')]:
+            for label,name in [('Mentions légales','Mentions_légales_par_KISSARI.pdf'),('RGPD','RGPD.pdf')]:
                 href=next(a['href'] for a in links if a['text']==label)
-                with urllib.request.urlopen(urljoin(result['blog_url'],quote(unquote(href),safe='/')),timeout=15) as response:
+                with urllib.request.urlopen(urljoin(result['blog_url'],quote(unquote(href),safe='/?=&')),timeout=15) as response:
                     self.assertEqual(response.headers.get_content_type(),'application/pdf')
                     self.assertEqual(hashlib.sha256(response.read()).hexdigest(),manifest[name]['sha256'])
             self.assertEqual((ROOT/'data/blog_editorial.json').read_bytes(),original)
         finally:
             runner.close()
     def test_M10_mentions_legales(self):
-        self.document('Mentions légales','Mentions_légales_KISSARI.pdf')
+        self.document('Mentions légales','Mentions_légales_par_KISSARI.pdf')
     def test_M11_rgpd_replaces_cgv(self):
         self.document('RGPD','RGPD.pdf')
         for path,links in self.pages.items():

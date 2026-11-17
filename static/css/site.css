@@ -568,17 +568,14 @@ body {
   max-width: 185px;
 }
 
-/* ----- 06.6 Ajustements de largeur et de titres par couleur ---------------- */
+/* ----- 06.6 Largeurs par couleur, typographie commune aux quatre cartes ---- */
 .yellow .card-copy,
 .green .card-copy {
   max-width: 62%;
 }
-.yellow .card-copy h3 {
-  font-size: 37px;
-}
-.green .card-copy h3 {
-  font-size: 36px;
-}
+/* Les quatre titres héritent de la taille commune .card-copy h3.
+   Ne pas réintroduire de tailles par couleur : elles écrasaient les 49 px
+   du grand écran pour Transformer et Faire rayonner (spécificité CSS). */
 .green .card-copy p {
   max-width: 180px;
 }

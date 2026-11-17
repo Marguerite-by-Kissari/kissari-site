@@ -62,7 +62,7 @@ class Recipe(unittest.TestCase):
     def test_M23(self):
         self.linked('avec-le-marketing-learning-place-a-l-action','marketing-learning-ne-sarrete-jamais','Pourquoi le marketing learning ne s’arrête jamais ?')
     def test_M24(self):
-        self.linked('marketing-learning-ne-sarrete-jamais','marketing-formation-avant-postes-engagement','Le marketing de la formation aux avant-postes de l’engagement')
+        self.linked('marketing-learning-ne-sarrete-jamais','marketing-formation-avant-postes-engagement','Le marketing learning aux avant-postes de l’engagement')
     def test_M25(self):
         self.empty('marketing-formation-avant-postes-engagement')
 

@@ -110,6 +110,10 @@ Critères de rendu :
   `26px` ;
 - la taille des titres desktop suit `clamp(47px, 3.6vw, 54px)`.
 
+### Amendement ciblé — textes et typographie des quatre cartes
+
+À la demande explicite d’Eric : supprimer la virgule avant « belles » dans Créer ; remplacer « Marketing de la formation » par « Marketing learning » dans Faire rayonner. Les quatre titres internes `h3` suivent désormais la même règle : 39 px en largeur intermédiaire, 49 px à partir de 1300 px, règle mobile commune existante conservée. Supprimer les exceptions jaunes/vertes à 37/36 px, dont la spécificité écrasait les 49 px desktop. Sous-titres, paragraphes, positions et dimensions des visuels inchangés. Vérification navigateur à 800/960/1185/1300/1920/390 px ; rendu desktop validé par Eric le 17 novembre 2026 (validation de l’ensemble des corrections). Les débordements mobiles préexistants à 390 px restent hors de cet amendement. Validation utilisateur reçue le 17 novembre 2026 ; intégration GitHub sur main autorisée. Le serveur de recette ne fait pas partie de cette demande.
+
 ### Cartes
 
 - grille `2 × 2`, coins externes arrondis ;

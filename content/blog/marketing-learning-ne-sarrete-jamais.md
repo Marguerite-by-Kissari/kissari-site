@@ -23,7 +23,7 @@ source_document: "Marketing de la formation-article2.docx"
 next_article: "/blog/marketing-formation-avant-postes-engagement"
 ---
 
-Là toute la mission du marketing learning by KISSARI ? C’est révéler cette envie, la nourrir et l’entretenir. Embarquez pour un parcours en trois étapes, où chaque moment compte pour transformer l’envie en engagement durable.
+Du coup, une petite idée de la mission du marketing learning by KISSARI ? Bingo ! C’est bien de révéler cette envie, la nourrir et l’entretenir. Embarquez pour un parcours en trois étapes, où chaque moment compte pour transformer l’envie en engagement durable.
 
 > **Pierre après pierre se bâtit l’engagement…**
 >

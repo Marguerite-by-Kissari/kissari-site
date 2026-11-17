@@ -8,7 +8,7 @@ date: "2026-10-30"
 publishDate: "2026-10-30"
 categories:
   - "jusdecerveau"
-image: "Bandeaux_articles_Lexique_formapro.png"
+image: "Bandeaux_articles_Formpro.png"
 draft: false
 ---
 
@@ -117,7 +117,7 @@ Vaste sujet que le ROI en formation, quand il s’agit de mesurer les bénéfice
 {{< callout color="yellow" title="Sérieusement ? On les aime !" label="Liste" >}}
 1. **Serious game** : apprendre en jouant, oui oui, c’est du sérieux ! Avec des objectifs pédagogiques bien précis, le serious game permet d’acquérir de nombreuses connaissances et compétences. Enquête, simulation, défi, escape game… les formats ne manquent pas pour immerger les apprenants, stimuler leur engagement et favoriser la mémorisation. Avec un point d’alerte toutefois :  que le jeu reste bien au service de l’apprentissage, sans quoi… ce n’est plus du tout sérieux !
 2. **Social learning** : apprendre tout seul, c’est bien mais apprendre avec les autres et des autres, c’est souvent beaucoup mieux ! Le social learning, c’est justement apprendre en échangeant, en observant, en partageant ses expériences avec d’autres, en s’entraidant... Forums, communautés, classes virtuelles, réseaux sociaux d’entreprise… les espaces d’interaction ne manquent pas pour devenir de véritables terrains d’apprentissage collectifs. 
-3. Storytelling : il ne vous raconte pas des salades, mais plutôt des histoires… (au service des objectifs pédagogiques bien sûr) J ! En formation, grâce à l’appui de personnages, de défis ou de situations qui semblent bien réelles, le storytelling donne du sens, suscite des émotions, favorise l’engagement et facilite la mémorisation. Caméléon, il s’invite dans toutes les modalités et stimule le propre du métier de storyteller : l’imagination !
+3. Storytelling : il ne vous raconte pas des salades, mais plutôt des histoires… (au service des objectifs pédagogiques bien sûr) ! En formation, grâce à l’appui de personnages, de défis ou de situations qui semblent bien réelles, le storytelling donne du sens, suscite des émotions, favorise l’engagement et facilite la mémorisation. Caméléon, il s’invite dans toutes les modalités et stimule le propre du métier de storyteller : l’imagination !
 {{< /callout >}}
 
 **Synchrone/asynchrone** : quand la formation synchrone réunit les apprenants simultanément, la formation asynchrone à l’inverse permet à chacun d’accéder aux contenus quand il le souhaite, où qu’il se trouve et à son propre rythme. 
