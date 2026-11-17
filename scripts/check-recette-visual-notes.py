@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILD = Path(sys.argv.pop(1))
 CASE = sys.argv.pop(1) if len(sys.argv) > 1 else None
 ARTICLE = 'blog/classe-virtuelle-la-modalite-qui-n-a-rien-d-un-plan-b/index.html'
-VIDEO = Path('/mnt/datas/obsidian-vault/10-Projets/20-Sociétés/10-KISS-ARI/site-web-hugo/KISSARI-morph-1200x1200-OK.mp4')
+VIDEO = ROOT / 'static/videos/KISSARI-morph-1200x1200-OK.mp4'
 
 class Element:
     def __init__(self, tag='', attrs=(), parent=None):
