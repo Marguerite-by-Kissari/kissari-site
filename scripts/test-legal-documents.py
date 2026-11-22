@@ -42,27 +42,8 @@ class LegalDocuments(unittest.TestCase):
         for installed in [ROOT/'static/documents'/name,BUILD/'documents'/name]:
             self.assertEqual(expected,hashlib.sha256(installed.read_bytes()).hexdigest())
             self.assertTrue(installed.read_bytes().startswith(b'%PDF-'))
-    def test_connected_preview_documents(self):
-        import importlib.util,urllib.request
-        from urllib.parse import urljoin,quote
-        spec=importlib.util.spec_from_file_location('legal_preview',ROOT/'scripts/serve-editorial-preview.py')
-        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-        runner=module.PreviewRunner(ROOT)
-        original=(ROOT/'data/blog_editorial.json').read_bytes()
-        try:
-            result=runner.run({'kind':'rubric','patch':{'schema_version':1,'base_config_sha256':hashlib.sha256(original).hexdigest(),'changes':{'title':'Contrôle M10/M11 — aperçu local'}}})
-            self.assertEqual(result['status'],'success')
-            html=urllib.request.urlopen(result['blog_url'],timeout=15).read().decode()
-            links=Footer(html).links
-            manifest=json.loads(MANIFEST.read_text())
-            for label,name in [('Mentions légales','Mentions_légales_par_KISSARI.pdf'),('RGPD','RGPD.pdf')]:
-                href=next(a['href'] for a in links if a['text']==label)
-                with urllib.request.urlopen(urljoin(result['blog_url'],quote(unquote(href),safe='/?=&')),timeout=15) as response:
-                    self.assertEqual(response.headers.get_content_type(),'application/pdf')
-                    self.assertEqual(hashlib.sha256(response.read()).hexdigest(),manifest[name]['sha256'])
-            self.assertEqual((ROOT/'data/blog_editorial.json').read_bytes(),original)
-        finally:
-            runner.close()
+    # Le contrôle des PDF via l’API de prévisualisation est conservé
+    # dans atelier-ecriture/scripts/test-legal-documents.py.
     def test_M10_mentions_legales(self):
         self.document('Mentions légales','Mentions_légales_par_KISSARI.pdf')
     def test_M11_rgpd_replaces_cgv(self):

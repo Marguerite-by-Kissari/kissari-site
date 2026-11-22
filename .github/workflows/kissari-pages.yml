@@ -40,9 +40,7 @@ jobs:
           python3 scripts/test-editorial-build.py
       - name: Verifier JavaScript
         run: |
-          node --check static/atelier-article/app.js
-          node --check static/atelier-article/editorial.js
-          node --check static/atelier-article/publication-ui.js
+          # L’atelier est développé et contrôlé dans son dépôt privé séparé.
           for file in static/js/*.js; do node --check "$file"; done
       - name: Configurer Pages
         if: github.ref == 'refs/heads/main'

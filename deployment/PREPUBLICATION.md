@@ -8,7 +8,7 @@ Le domaine de production est `https://kissari.com/`. Les DNS restent une opérat
 - Les branches `atelier/**`, `recette/**` et les PR ne déploient pas. Le résultat de recette est archivé 7 jours.
 - Les permissions globales restent en lecture ; seul le job `deploy` reçoit `pages: write` et `id-token: write`.
 - La reconstruction des articles arrivés à échéance est programmée toutes les quinze minutes ; GitHub peut retarder les runs.
-- `deployment/kissari-pages.yml` demeure un ancien modèle inactif. Ne pas l'activer en parallèle.
+- L’ancien modèle inactif `deployment/kissari-pages.yml` a été transféré dans le dépôt privé `Marguerite-by-Kissari/atelier-ecriture`. Ne pas l’activer en parallèle du workflow public.
 - L'environnement `github-pages` doit autoriser uniquement la branche `main`, sans approbation obligatoire par publication.
 
 ## Vérifier le candidat

@@ -1,90 +1,54 @@
-# KISSARI — sources Hugo et atelier éditorial
+# KISSARI — site public Hugo
 
-Sources locales de référence destinées au dépôt `Marguerite-by-Kissari/kissari-site`.
-M15 est intégré à la demande d’Eric : rédaction d’article, réglage de rubrique,
-export et test Hugo local. Le push des sources et le déploiement Pages sont deux étapes distinctes.
-Le dépôt contient aussi le pilote de publication Git/SSH et son modèle de workflow Pages.
-Le modèle reste dans `deployment/` : il n’est pas un workflow actif sous `.github/workflows/`.
+Ce dépôt contient le site public : contenus, médias, gabarits Hugo, styles et scripts du site, ainsi que son workflow GitHub Pages.
 
-## État des éléments intégrés
+**L’atelier d’écriture est désormais développé dans le dépôt privé [`Marguerite-by-Kissari/atelier-ecriture`](https://github.com/Marguerite-by-Kissari/atelier-ecriture).** Son interface, ses services locaux, ses générateurs, son installateur et sa documentation spécifique ont été transférés puis retirés de la branche courante de ce dépôt. Aucune réécriture de l’historique Git n’a été effectuée : les anciennes versions restent consultables.
 
-- Page `/contact/` avec contacts directs email/LinkedIn, icônes alignées, notice d’information et bloc rose ; aucun formulaire d’envoi.
-- Mentions légales et RGPD : PDF fournis sous `static/documents/`, liens dans tous les pieds de page et empreintes dans `data/legal_documents.json`.
-- Article FormPro : corrections M21 fournies, URL et métadonnées conservées.
-- Atelier : connecteur Git/SSH, boutons de publication, installateur et générateur de packages personnels ajoutés comme **pilote**. Le push du code ne crée pas d’accès GitHub et ne valide pas l’installation Windows/macOS.
-- Restent à finaliser séparément : catalogue GitHub complet et réouverture d’articles, recette native des postes, SEO/sitemap/domaine et activation Pages. Ne pas assimiler ce dépôt synchronisé à une mise en ligne effective.
-- Les clés privées et archives personnelles sont externes au dépôt ; les scripts de génération ne contiennent aucune clé. `livrables/` et les sorties Hugo ne sont pas versionnés.
+## Contenus et rendu
 
-## Sources
-- Spécifications graphiques et textes fournis : `specs/001-homepage.md`
-- Assets : copies locales des livrables KISSARI V1 et des fontes Poppins
-
-## Documentation et contrat de rendu
-
-- Spécification complète et critères de validation : `specs/001-homepage.md`
-- HTML de la page : `layouts/index.html`
-- CSS source commenté : `static/css/site.css`
-- Blog et cartes compactes : `specs/08-blog-rails.md`
-- Modèle de rédaction : `specs/09-template-redaction-article-blog.md`
-- Export ZIP et intégration : `specs/10-import-atelier-article.md`
-
-La spécification est le document de référence pour les repères 1920px, les
-frises, le Manifeste, les Expertises et le pied de page. Elle inclut les règles
-mobile/desktop du cadre Expertises : `80vw` sur desktop, grille centrée et
-alignement du titre droit sur la carte jaune.
+- Accueil : `layouts/index.html`, styles `static/css/site.css`.
+- Blog : `content/blog/`, gabarits `layouts/blog/`, médias d’articles et visuels sous `static/images/blog/`.
+- Contact : page de contacts directs email/LinkedIn, sans formulaire d’envoi.
+- Mentions légales et RGPD : PDF sous `static/documents/`, empreintes dans `data/legal_documents.json`.
+- Contrats graphiques : `specs/001-homepage.md`, repères 1920 px, frises, Manifeste, Expertises et pied de page. Préserver les composants et textes validés.
 
 ## Lancer localement
 
+Prérequis : Hugo Extended 0.154.5. Pour les tests, Python 3.11+ et Node.js ; Pillow pour certains contrôles de rendu.
+
+Depuis ce clone :
+
 ```bash
-cd /mnt/datas/01-dev/web/maversionkissari
 hugo server --bind 127.0.0.1 --port 1314 --disableFastRender
 ```
 
-Puis ouvrir : <http://127.0.0.1:1314/>.
+Ouvrir <http://127.0.0.1:1314/> ou <http://127.0.0.1:1314/blog/>. L’interface `/atelier-article/` ne fait plus partie de ce dépôt.
 
-La page d’index des articles est disponible à <http://127.0.0.1:1314/blog/>. Les
-articles sont issus des fichiers réels de `content/blog/`.
+## Articles et rubrique éditoriale
 
-## Ajouter un article depuis l’Atelier
+L’atelier privé continue de produire les articles pour **ce dépôt public**, pas pour son propre dépôt applicatif. Les articles validés vont dans `content/blog/` ; les réglages de rubrique restent dans `data/blog_editorial.json`. Le choix « Prêt à publier », le statut de brouillon et la date/heure de publication déterminent la visibilité au build.
 
-Voir [le mode d’emploi](specs/10-import-atelier-article.md) : exporter le ZIP,
-décompresser le dossier dans `content/blog/`, puis régénérer le site.
-Le choix « Prêt à publier » est nécessaire pour apparaître dans un build normal.
+Le catalogue JSON (`layouts/blog/list.editorialcatalog.json`) et ses contrats de validation (`scripts/editorial_config.py`, `test-editorial-config.py`, `test-editorial-build.py`) restent ici : ils servent les données du site et son intégration éditoriale, sans embarquer l’interface d’administration. Le guide de format `specs/09-template-redaction-article-blog.md` est partagé avec l’atelier.
 
-## Présentation du blog
+Pour lancer l’atelier en développement, cloner les deux dépôts côte à côte et suivre le README du dépôt privé. Son lanceur assemble un espace de recette jetable sans modifier les sources de ce site.
 
-- Trois cartes complètes au-dessus de 1100 px, deux de 701 à 1100 px, une carte principale sur mobile.
-- Photos panoramiques cadrées en haut (`object-fit: cover; object-position: center top`). Préserver les visages dans la partie supérieure des images.
-- Titres et chapeaux complets, hauteur naturelle homogène par rangée ; flèches et navigation clavier conservées.
-- Les réglages des cartes ne modifient ni les photos sources ni la mise en page des articles.
-
-## Atelier à utiliser
-
-- Dans le site : <http://127.0.0.1:1314/atelier-article/>.
-- Version autonome : `livrables/atelier-editorial-kissari-autonome.html`.
-- Un bloc de section doit avoir un champ **Titre** renseigné sur une seule ligne ; l’export refuse les titres vides ou multilignes.
-- Après modification des sources de l’Atelier, exécuter `python scripts/build-atelier-standalone.py` : ce point d’entrée reconstruit désormais M15, son catalogue et le livrable autonome complet, sans perdre l’onglet Rubrique ni l’heure de publication.
-- Le grand aperçu de l’Atelier représente l’article, pas sa carte compacte dans la liste du blog.
-
-## Vérifier un build de production local
+## Contrôles et production
 
 ```bash
-hugo --minify --destination "$HOME/.hermes/cache/scratch/maversionkissari-build"
+python3 scripts/test-production-config.py
+python3 scripts/test-editorial-config.py
+python3 scripts/test-editorial-build.py
+python3 scripts/build-production.py --destination "$HOME/.hermes/cache/scratch/kissari-public-build"
 ```
 
-## Atelier M15 intégré
+La destination doit être un dossier de sortie dédié, jamais un dossier de sources. La construction vérifie la navigation, l’absence de l’atelier dans l’artefact public, les liens internes, les URL canoniques, le sitemap et robots.txt.
 
-Pour les tests connectés (sans écriture dans les contenus de référence ni publication) :
+Le workflow actif `.github/workflows/kissari-pages.yml` contrôle puis déploie `main`. Les branches `atelier/**`, `recette/**` et les PR ne déclenchent pas de déploiement public. La reconstruction programmée toutes les quinze minutes rend les articles éligibles à leur échéance ; GitHub peut retarder les runs. Un commit envoyé n’est pas une preuve de mise en ligne.
 
-```bash
-python scripts/serve-editorial-preview.py --port 1345
-```
+Voir `deployment/PREPUBLICATION.md` pour les contrôles de publication. Le domaine de production reste `https://kissari.com/` ; aucune configuration DNS n’est modifiée par la séparation.
 
-Ouvrir `http://127.0.0.1:1345/atelier-article/`. Un serveur Hugo ou HTTP statique seul
-ne fournit pas l’API de test. La version autonome garde l’édition et l’export hors ligne.
-Les aperçus et rapports restent locaux dans le cache et `livrables/`, non versionnés.
-Une date future ne déclenche pas encore de reconstruction automatique sur GitHub.
+## Traçabilité et retour arrière
 
-Les anciennes sources distantes sont remplacées par un commit ordinaire conservant
-l’historique ; aucun force-push n’est requis. Le domaine, la configuration Pages et
-les workflows de publication restent à traiter dans le lot suivant.
+L’extraction part du commit `9450a145066c4477ed1a3fd89fe7b1cd4404302f`. Le code a été publié et relu dans le dépôt privé au commit `7b9d2ccecae868042ba9129d595d8fa155d77278` **avant** le retrait ici. Le manifeste d’empreintes est conservé dans `atelier-ecriture/docs/migration-manifest.json`.
+
+Le retrait est un commit ordinaire et peut être annulé par revert après examen des changements ultérieurs. Aucun secret, clé privée ou package personnel ne doit être ajouté à l’un ou l’autre dépôt.
